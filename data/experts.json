@@ -1,0 +1,30 @@
+[
+  {
+    "id": "els",
+    "name": "Els Dewaele",
+    "team": "Payroll Legal BE",
+    "country": "BE",
+    "topics": ["meal vouchers", "eco vouchers", "benefits"]
+  },
+  {
+    "id": "sofie",
+    "name": "Sofie Claes",
+    "team": "Payroll Legal BE",
+    "country": "BE",
+    "topics": ["contracts", "termination", "notice period", "bicycle allowance"]
+  },
+  {
+    "id": "jeroen",
+    "name": "Jeroen de Vries",
+    "team": "Payroll NL",
+    "country": "NL",
+    "topics": ["meal allowance", "benefits"]
+  },
+  {
+    "id": "anke",
+    "name": "Anke Peeters",
+    "team": "Client Services BE",
+    "country": "BE",
+    "topics": ["client agreements", "handover"]
+  }
+]

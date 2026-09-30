@@ -1,0 +1,9 @@
+[
+  {
+    "id": "lien",
+    "name": "Lien Vermeulen",
+    "role": "Payroll consultant BE",
+    "clients": ["verhaeghe", "delcour"]
+  },
+  { "id": "tom", "name": "Tom Jacobs", "role": "Payroll consultant BE", "clients": ["fritzco"] }
+]

@@ -1,0 +1,121 @@
+{
+  "people": [
+    { "id": "els", "name": "Els Dewaele", "team": "Payroll Legal BE", "active": true },
+    {
+      "id": "karel",
+      "name": "Karel Moens",
+      "team": "Payroll Operations BE",
+      "active": false,
+      "leftAt": "2025-06-30"
+    },
+    { "id": "sofie", "name": "Sofie Claes", "team": "Payroll Legal BE", "active": true },
+    { "id": "jeroen", "name": "Jeroen de Vries", "team": "Payroll NL", "active": true },
+    { "id": "anke", "name": "Anke Peeters", "team": "Client Services BE", "active": true }
+  ],
+  "clients": [
+    { "id": "verhaeghe", "name": "Bakkerij Verhaeghe", "country": "BE", "pc": "118" },
+    { "id": "delcour", "name": "Delcour Logistics", "country": "BE", "pc": "140.03" },
+    { "id": "fritzco", "name": "FritzCo Retail", "country": "BE", "pc": "201" }
+  ],
+  "docs": [
+    {
+      "id": "pol-mv-2026",
+      "title": "Meal vouchers Belgium: 2026 rules and maximum amounts",
+      "type": "policy",
+      "updatedAt": "2026-06-12",
+      "ownerId": "els",
+      "scope": { "country": "BE" },
+      "tags": ["meal vouchers", "maaltijdcheques", "employer contribution", "maximum", "2026"],
+      "file": "pol-mv-2026.md"
+    },
+    {
+      "id": "pol-mv-2026-copy",
+      "title": "Copy of Meal vouchers Belgium rules (shared drive)",
+      "type": "policy",
+      "updatedAt": "2025-02-03",
+      "scope": { "country": "BE" },
+      "tags": ["meal vouchers", "maaltijdcheques", "employer contribution", "maximum"],
+      "file": "pol-mv-2026-copy.md"
+    },
+    {
+      "id": "ho-verhaeghe-2025",
+      "title": "Handover note: Bakkerij Verhaeghe portfolio",
+      "type": "handover",
+      "updatedAt": "2025-05-20",
+      "ownerId": "karel",
+      "scope": { "country": "BE", "clientId": "verhaeghe" },
+      "tags": ["handover", "verhaeghe", "meal vouchers", "bakery", "PC 118"],
+      "file": "ho-verhaeghe-2025.md"
+    },
+    {
+      "id": "chat-mv-nl",
+      "title": "Teams: #payroll-questions, meal allowance thread",
+      "type": "chat",
+      "updatedAt": "2026-08-27",
+      "ownerId": "jeroen",
+      "scope": { "country": "NL" },
+      "tags": ["meal vouchers", "meal allowance", "maximum", "teams"],
+      "file": "chat-mv-nl.md"
+    },
+    {
+      "id": "cla-verhaeghe-2025",
+      "title": "Client agreement note: Bakkerij Verhaeghe meal voucher scheme (PC 118)",
+      "type": "cla",
+      "updatedAt": "2025-11-04",
+      "ownerId": "anke",
+      "scope": { "country": "BE", "pc": "118", "clientId": "verhaeghe" },
+      "tags": ["meal vouchers", "verhaeghe", "PC 118", "client agreement", "employer contribution"],
+      "file": "cla-verhaeghe-2025.md"
+    },
+    {
+      "id": "pol-fixedterm-2026",
+      "title": "Fixed-term contracts Belgium: early termination and notice",
+      "type": "policy",
+      "updatedAt": "2026-03-20",
+      "ownerId": "sofie",
+      "scope": { "country": "BE" },
+      "tags": ["fixed-term", "temporary contract", "notice period", "termination", "opzegtermijn"],
+      "file": "pol-fixedterm-2026.md"
+    },
+    {
+      "id": "pol-ecocheques-2025",
+      "title": "Eco vouchers Belgium: amounts and eligibility",
+      "type": "policy",
+      "updatedAt": "2025-07-01",
+      "ownerId": "els",
+      "scope": { "country": "BE" },
+      "tags": ["eco vouchers", "ecocheques", "maximum"],
+      "file": "pol-ecocheques-2025.md"
+    },
+    {
+      "id": "pol-bike-2026",
+      "title": "Bicycle allowance Belgium 2026",
+      "type": "policy",
+      "updatedAt": "2026-01-15",
+      "ownerId": "sofie",
+      "scope": { "country": "BE" },
+      "tags": ["bicycle allowance", "fietsvergoeding", "commuting"],
+      "file": "pol-bike-2026.md"
+    },
+    {
+      "id": "ho-delcour-2025",
+      "title": "Handover note: Delcour Logistics",
+      "type": "handover",
+      "updatedAt": "2025-12-02",
+      "ownerId": "anke",
+      "scope": { "country": "BE", "clientId": "delcour" },
+      "tags": ["handover", "delcour", "shift premiums", "PC 140.03"],
+      "file": "ho-delcour-2025.md"
+    },
+    {
+      "id": "cla-fritzco-2026",
+      "title": "Client agreement note: FritzCo Retail bonus scheme (PC 201)",
+      "type": "cla",
+      "updatedAt": "2026-02-10",
+      "ownerId": "anke",
+      "scope": { "country": "BE", "pc": "201", "clientId": "fritzco" },
+      "tags": ["fritzco", "bonus", "PC 201", "meal vouchers"],
+      "file": "cla-fritzco-2026.md"
+    }
+  ]
+}

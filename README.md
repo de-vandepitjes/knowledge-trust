@@ -30,8 +30,8 @@ npm run dev                  # http://localhost:3000
 ## Status / unfinished
 
 - [x] Concept chosen
-- [ ] Synthetic corpus
-- [ ] Core flow
+- [x] Synthetic corpus
+- [x] Core flow (API)
 - [ ] Trust signals UI
 - [ ] Aikido baseline + fixes
 - [ ] Demo video
@@ -39,3 +39,16 @@ npm run dev                  # http://localhost:3000
 ## Team
 
 See [docs/team.md](docs/team.md).
+
+## Engine (done)
+
+- `POST /api/ask` `{question, clientId}` → `{answer, receipt}` (see `src/lib/types.ts` for the contract)
+- `POST /api/login` `{userId}` (demo personas: `lien`, `tom`), `POST /api/logout`, `GET /api/me`
+- `GET /api/sources/:id` document + metadata, 404 if out of scope
+- Trust rules are deterministic in `src/lib/trust.ts`; the LLM (Gemini, `src/lib/llm.ts`) only writes the answer and extracts claims/conflicts.
+- Demo questions (log in as Lien, client `verhaeghe` unless noted):
+  1. "What is the maximum employer contribution for meal vouchers for Bakkerij Verhaeghe this year?" → **verify**, conflict 6.91 vs 5.91, ask Anke
+  2. "How many days of notice does the employer give to terminate a fixed-term contract early after two months?" → **safe**
+  3. "What is the bicycle allowance for a cross-border worker living in Luxembourg?" → **stop**, no source
+  4. client `delcour`: "What is the maximum eco voucher amount for Delcour Logistics?" → **verify**, stale source
+  5. log in as Tom, ask about `verhaeghe` → **403**
