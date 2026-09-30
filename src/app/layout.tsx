@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Manrope } from "next/font/google";
 import "./globals.css";
+import { Constellation } from "@/components/Constellation";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -21,7 +22,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${manrope.variable} ${plexMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Constellation />
+        <div className="relative z-[1] flex min-h-full flex-1 flex-col">{children}</div>
+      </body>
     </html>
   );
 }

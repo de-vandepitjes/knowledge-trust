@@ -147,6 +147,17 @@ body::before {
   }
 }
 
+.constellation-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  filter: saturate(1.08) brightness(1.04);
+  will-change: transform;
+}
+
 /* Frosted glass card */
 .cozy-card {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.06));
