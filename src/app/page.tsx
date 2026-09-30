@@ -92,12 +92,6 @@ export default function LoginPage() {
             <ArrowRight className="h-4 w-4" />
           </button>
         </form>
-
-        <div className="mt-5 text-center text-xs text-[var(--muted2)]">
-          Demo accounts: <span className="font-mono text-white/70">lien / Lien2026!</span>
-          <span className="mx-2 opacity-50">·</span>
-          <span className="font-mono text-white/70">tom / Tom2026!</span>
-        </div>
       </div>
     </main>
   );
