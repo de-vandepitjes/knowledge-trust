@@ -9,52 +9,18 @@ import {
   type OrbState,
 } from "thinking-orbs";
 
-/**
- * Entry-screen orb drawn with the thinking-orbs engine, plus the library's cursor gravity:
- * the pointer bends toward the orb as it nears. Design element only.
- */
-
-// Raster of the macOS arrow pointer. The library hides the real cursor near the orb and
-// draws this in its place, so it must match the OS pointer; hence macOS + fine pointer only.
-const ARROW_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 16 24">
-<path d="M1 1 L1 20.2 L6 15.3 L9.1 21.8 L11.8 20.5 L8.8 14.2 L15 14.2 Z"
- fill="#000" stroke="#fff" stroke-width="1.15" stroke-linejoin="round"/>
-</svg>`;
-const MAC_ARROW_SPRITE = {
-  src: `data:image/svg+xml;utf8,${encodeURIComponent(ARROW_SVG)}`,
-  width: 16,
-  height: 24,
-  hotX: 1,
-  hotY: 1,
-};
-
-function hasMatchingCursorSprite(): boolean {
-  if (typeof navigator === "undefined" || typeof window === "undefined") return false;
-  const platform = `${navigator.platform ?? ""} ${navigator.userAgent ?? ""}`;
-  const isMac = /Mac|iPad|iPhone/.test(platform);
-  const finePointer = window.matchMedia?.("(pointer: fine)")?.matches ?? false;
-  return isMac && finePointer;
-}
+/** Entry-screen orb drawn with the thinking-orbs engine. Design element only. */
 
 export function Orb({
   state = "solving",
   size = 200,
-  cursorGravity = true,
   className = "",
 }: {
   state?: OrbState;
   size?: number;
-  cursorGravity?: boolean;
   className?: string;
 }) {
   const ref = useRef<HTMLCanvasElement | null>(null);
-
-  useEffect(() => {
-    const canvas = ref.current;
-    if (!canvas || !cursorGravity || !hasMatchingCursorSprite()) return;
-    setGravitySprite(MAC_ARROW_SPRITE);
-    return attachGravity(canvas, { reach: 240 });
-  }, [cursorGravity]);
 
   useEffect(() => {
     const canvas = ref.current;
