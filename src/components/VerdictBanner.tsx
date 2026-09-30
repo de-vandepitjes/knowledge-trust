@@ -1,22 +1,52 @@
+import { AlertTriangle, CheckCircle2, OctagonX } from "lucide-react";
 import type { Verdict } from "@/lib/types";
 
-const STYLE: Record<Verdict, { bg: string; ring: string; title: string; icon: string }> = {
-  safe: { bg: "bg-emerald-600", ring: "ring-emerald-200", title: "Safe to act", icon: "✓" },
-  verify: { bg: "bg-amber-500", ring: "ring-amber-200", title: "Verify before acting", icon: "!" },
-  stop: { bg: "bg-red-600", ring: "ring-red-200", title: "Don't act on this yet", icon: "✕" },
+const STYLE: Record<
+  Verdict,
+  {
+    ring: string;
+    glow: string;
+    iconBg: string;
+    title: string;
+    Icon: React.ComponentType<{ className?: string }>;
+  }
+> = {
+  safe: {
+    ring: "border-emerald-300/30",
+    glow: "shadow-[0_0_80px_-30px_rgba(52,211,153,0.9)]",
+    iconBg: "bg-emerald-400/20 text-emerald-200",
+    title: "Safe to act",
+    Icon: CheckCircle2,
+  },
+  verify: {
+    ring: "border-amber-300/35",
+    glow: "shadow-[0_0_80px_-30px_rgba(251,191,36,0.9)]",
+    iconBg: "bg-amber-400/20 text-amber-100",
+    title: "Verify before acting",
+    Icon: AlertTriangle,
+  },
+  stop: {
+    ring: "border-rose-300/35",
+    glow: "shadow-[0_0_80px_-30px_rgba(251,113,133,0.9)]",
+    iconBg: "bg-rose-500/20 text-rose-100",
+    title: "Don't act on this yet",
+    Icon: OctagonX,
+  },
 };
 
 export function VerdictBanner({ verdict, summary }: { verdict: Verdict; summary: string }) {
   const s = STYLE[verdict];
   return (
-    <div className={`flex items-start gap-4 rounded-2xl ${s.bg} text-white p-5 ring-4 ${s.ring}`}>
-      <div className="h-11 w-11 shrink-0 rounded-full bg-white/20 flex items-center justify-center text-2xl font-bold">
-        {s.icon}
+    <div className={`cozy-card rise flex items-start gap-4 border p-5 ${s.ring} ${s.glow}`}>
+      <div className={`grid h-12 w-12 shrink-0 place-items-center rounded-2xl ${s.iconBg}`}>
+        <s.Icon className="h-6 w-6" />
       </div>
-      <div>
-        <div className="text-xs uppercase tracking-wider opacity-80">Trust verdict</div>
-        <div className="text-2xl font-semibold leading-tight">{s.title}</div>
-        <p className="mt-1 text-sm/relaxed opacity-95">{summary}</p>
+      <div className="min-w-0">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted2)]">
+          Trust verdict
+        </div>
+        <div className="text-2xl font-extrabold tracking-tight leading-tight">{s.title}</div>
+        <p className="mt-1 text-sm/relaxed text-[var(--muted)]">{summary}</p>
       </div>
     </div>
   );

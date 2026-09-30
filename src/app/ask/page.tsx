@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { LogOut, Search, Sparkles } from "lucide-react";
+import { Wordmark } from "@/components/Brand";
 import { Receipt } from "@/components/Receipt";
 import type { AskResponse } from "@/lib/types";
 
@@ -21,6 +23,29 @@ const EXAMPLES: Record<string, string[]> = {
   delcour: ["What is the maximum eco voucher amount for Delcour Logistics?"],
   fritzco: ["What is the meal voucher employer share for FritzCo Retail?"],
 };
+
+const STEPS = [
+  "Finding sources",
+  "Checking freshness",
+  "Checking ownership",
+  "Matching scope",
+  "Comparing claims",
+];
+
+function Loading() {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setI((x) => (x + 1) % STEPS.length), 900);
+    return () => clearInterval(t);
+  }, []);
+  return (
+    <div className="cozy-card rise p-8 text-center">
+      <div className="mx-auto mb-4 h-9 w-9 animate-spin rounded-full border-[3px] border-white/10 border-t-[var(--accent)]" />
+      <div className="font-semibold">{STEPS[i]}…</div>
+      <div className="mt-1 text-sm text-[var(--muted2)]">Building the trust receipt</div>
+    </div>
+  );
+}
 
 export default function AskPage() {
   const router = useRouter();
@@ -71,33 +96,35 @@ export default function AskPage() {
 
   return (
     <div className="flex-1">
-      <header className="border-b border-slate-200 bg-white">
+      <header className="sticky top-0 z-10 border-b border-white/10 bg-[rgba(7,10,26,0.55)] backdrop-blur-xl">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-3">
-          <div className="flex items-center gap-3">
-            <span className="rounded-full bg-[#0f2a5f] text-white px-3 py-1 text-sm font-medium">
-              Trust Receipt
-            </span>
-            <span className="hidden text-sm text-slate-500 sm:inline">
-              Find it. Understand it. Trust it.
-            </span>
-          </div>
+          <Wordmark size="sm" />
           {me && (
             <div className="flex items-center gap-3 text-sm">
-              <span className="text-slate-700">
-                <span className="font-medium">{me.name}</span> · {me.role}
+              <div className="grid h-8 w-8 place-items-center rounded-full bg-[var(--selected)] text-sm font-bold ring-1 ring-[var(--selected-stroke)]">
+                {me.name[0]}
+              </div>
+              <span className="hidden sm:inline">
+                <span className="font-semibold">{me.name}</span>
+                <span className="text-[var(--muted2)]"> · {me.role}</span>
               </span>
-              <button onClick={logout} className="text-slate-500 hover:underline">
-                Sign out
+              <button
+                onClick={logout}
+                className="cozy-press inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-xs font-semibold text-[var(--muted)]"
+              >
+                <LogOut className="h-3.5 w-3.5" /> Sign out
               </button>
             </div>
           )}
         </div>
       </header>
 
-      <main className="mx-auto max-w-4xl px-6 py-8 space-y-6">
-        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <label className="text-xs uppercase tracking-wider text-slate-500">Client</label>
-          <div className="mt-1 flex flex-wrap gap-2">
+      <main className="mx-auto max-w-4xl px-6 py-8 space-y-5">
+        <section className="cozy-card rise p-5">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted2)]">
+            Client
+          </div>
+          <div className="mt-2 flex flex-wrap gap-2">
             {me?.clients.map((c) => (
               <button
                 key={c.id}
@@ -105,15 +132,13 @@ export default function AskPage() {
                   setClientId(c.id);
                   setResult(null);
                 }}
-                className={`rounded-full border px-3 py-1.5 text-sm ${
-                  c.id === clientId
-                    ? "border-[#0f2a5f] bg-[#0f2a5f] text-white"
-                    : "border-slate-200 bg-white text-slate-700 hover:border-slate-400"
+                className={`cozy-press rounded-full border border-white/10 bg-white/[0.05] px-3.5 py-1.5 text-sm font-semibold text-[var(--muted)] ${
+                  c.id === clientId ? "cozy-selected" : ""
                 }`}
               >
-                {c.name}{" "}
-                <span className="opacity-70">
-                  · {c.country}
+                {c.name}
+                <span className="ml-1.5 font-mono text-xs opacity-70">
+                  {c.country}
                   {c.pc ? ` · PC ${c.pc}` : ""}
                 </span>
               </button>
@@ -125,22 +150,28 @@ export default function AskPage() {
               e.preventDefault();
               submit();
             }}
-            className="mt-4"
+            className="mt-5"
           >
-            <label className="text-xs uppercase tracking-wider text-slate-500">Question</label>
-            <div className="mt-1 flex gap-2">
-              <input
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
-                placeholder={client ? `Ask anything about ${client.name}…` : "Ask a question…"}
-                className="flex-1 rounded-xl border border-slate-300 px-4 py-3 text-base outline-none focus:border-[#0f2a5f] focus:ring-2 focus:ring-[#0f2a5f]/20"
-              />
+            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted2)]">
+              Question
+            </div>
+            <div className="mt-2 flex gap-2">
+              <div className="relative flex-1">
+                <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--muted2)]" />
+                <input
+                  value={question}
+                  onChange={(e) => setQuestion(e.target.value)}
+                  placeholder={client ? `Ask anything about ${client.name}…` : "Ask a question…"}
+                  className="w-full rounded-2xl border border-white/10 bg-white/[0.05] py-3 pl-11 pr-4 text-base text-white placeholder:text-[var(--muted2)] outline-none transition focus:border-[var(--selected-stroke)] focus:bg-white/[0.07] focus:ring-4 focus:ring-sky-400/10"
+                />
+              </div>
               <button
                 type="submit"
                 disabled={loading || !question.trim()}
-                className="rounded-xl bg-[#0f2a5f] px-5 py-3 font-medium text-white disabled:opacity-50"
+                className="btn-primary cozy-press inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-bold disabled:opacity-40"
               >
-                {loading ? "Checking…" : "Ask"}
+                <Sparkles className="h-4 w-4" />
+                {loading ? "Checking" : "Ask"}
               </button>
             </div>
           </form>
@@ -151,7 +182,7 @@ export default function AskPage() {
                 key={q}
                 onClick={() => submit(q)}
                 disabled={loading}
-                className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600 hover:bg-slate-200 disabled:opacity-50"
+                className="cozy-press rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-[var(--muted)] hover:bg-white/[0.08] disabled:opacity-50"
               >
                 {q}
               </button>
@@ -159,16 +190,9 @@ export default function AskPage() {
           </div>
         </section>
 
-        {loading && (
-          <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center text-slate-500 shadow-sm">
-            <div className="mx-auto mb-3 h-8 w-8 animate-spin rounded-full border-4 border-slate-200 border-t-[#0f2a5f]" />
-            Finding sources, checking freshness, ownership, scope and consensus…
-          </div>
-        )}
+        {loading && <Loading />}
         {error && (
-          <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">
-            {error}
-          </div>
+          <div className="cozy-card rise border-rose-300/30 p-5 text-rose-100">{error}</div>
         )}
         {result && <Receipt result={result} />}
       </main>
