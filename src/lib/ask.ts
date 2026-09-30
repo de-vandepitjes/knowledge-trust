@@ -1,3 +1,4 @@
+import { getCached, putCached } from "./cache";
 import { getContent, getPerson } from "./corpus";
 import { analyse } from "./llm";
 import { retrieve, visibleDocs } from "./retrieve";
@@ -20,7 +21,15 @@ export async function ask(question: string, user: User, client: Client): Promise
   }
 
   const docs = hits.map((h) => ({ meta: h.doc, content: getContent(h.doc.id) }));
-  const analysis = await analyse(question, client, docs);
+  let analysis;
+  try {
+    analysis = await analyse(question, client, docs);
+  } catch (e) {
+    const cached = getCached(question, client.id);
+    if (!cached) throw e;
+    console.warn("llm unavailable, serving cached answer from", cached.at);
+    return { ...cached.response, cached: true, cachedAt: cached.at };
+  }
   const relevantCount = analysis.claims.filter((c) => c.relevant).length;
 
   const cards: SourceCard[] = docs.map(({ meta }) => {
@@ -48,5 +57,7 @@ export async function ask(question: string, user: User, client: Client): Promise
   });
 
   const receipt = buildReceipt(question, client, cards, analysis.conflicts);
-  return { answer: analysis.answer, receipt };
+  const response: AskResponse = { answer: analysis.answer, receipt };
+  putCached(question, client.id, response);
+  return response;
 }

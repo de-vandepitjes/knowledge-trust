@@ -1,0 +1,627 @@
+{
+  "verhaeghe::what is the maximum employer contribution for meal vouchers for bakkerij verhaeghe this year": {
+    "question": "What is the maximum employer contribution for meal vouchers for Bakkerij Verhaeghe this year?",
+    "clientId": "verhaeghe",
+    "at": "2026-09-30T18:13:52.234Z",
+    "response": {
+      "answer": "For Bakkerij Verhaeghe, the maximum employer contribution for meal vouchers is EUR 6.91 per voucher (with a face value of EUR 8.00 and an employee contribution of EUR 1.09). This maximum scheme was adopted starting 1 January 2026, replacing their previous employer contribution of EUR 5.91.",
+      "receipt": {
+        "verdict": "verify",
+        "summary": "Sources disagree (employer contribution of EUR 6.91 vs EUR 5.91). Confirm with the owner before acting.",
+        "sources": [
+          {
+            "id": "cla-verhaeghe-2025",
+            "title": "Client agreement note: Bakkerij Verhaeghe meal voucher scheme (PC 118)",
+            "type": "cla",
+            "updatedAt": "2025-11-04",
+            "owner": {
+              "name": "Anke Peeters",
+              "team": "Client Services BE",
+              "active": true
+            },
+            "scope": {
+              "country": "BE",
+              "pc": "118",
+              "clientId": "verhaeghe"
+            },
+            "claim": "Bakkerij Verhaeghe transitioned to the maximum meal voucher scheme with an employer contribution of EUR 6.91 starting 1 January 2026.",
+            "relevant": true,
+            "signals": [
+              {
+                "key": "freshness",
+                "level": "green",
+                "label": "Updated 11 months ago",
+                "detail": "Updated within the last 12 months."
+              },
+              {
+                "key": "ownership",
+                "level": "green",
+                "label": "Owned by Anke Peeters",
+                "detail": "Anke Peeters (Client Services BE) is active and responsible for this document."
+              },
+              {
+                "key": "scope",
+                "level": "green",
+                "label": "Specific to Bakkerij Verhaeghe",
+                "detail": "Written for this client. Overrides general policy where it differs."
+              },
+              {
+                "key": "consensus",
+                "level": "red",
+                "label": "Contradicted by another source",
+                "detail": "Another retrieved source states a different value or rule."
+              },
+              {
+                "key": "sourceType",
+                "level": "green",
+                "label": "Client agreement",
+                "detail": "Reviewed document with a formal status."
+              }
+            ],
+            "score": 0.78
+          },
+          {
+            "id": "ho-verhaeghe-2025",
+            "title": "Handover note: Bakkerij Verhaeghe portfolio",
+            "type": "handover",
+            "updatedAt": "2025-05-20",
+            "owner": {
+              "name": "Karel Moens",
+              "team": "Payroll Operations BE",
+              "active": false,
+              "leftAt": "2025-06-30"
+            },
+            "scope": {
+              "country": "BE",
+              "clientId": "verhaeghe"
+            },
+            "claim": "As of May 2025, Bakkerij Verhaeghe provided meal vouchers with an employer contribution of EUR 5.91.",
+            "relevant": true,
+            "signals": [
+              {
+                "key": "freshness",
+                "level": "amber",
+                "label": "Updated 16 months ago",
+                "detail": "Between 1 and 2 years old. Payroll amounts are indexed yearly, so verify."
+              },
+              {
+                "key": "ownership",
+                "level": "amber",
+                "label": "Owner left (Karel Moens)",
+                "detail": "Karel Moens left 2025-06-30. Nobody has taken over this document."
+              },
+              {
+                "key": "scope",
+                "level": "green",
+                "label": "Specific to Bakkerij Verhaeghe",
+                "detail": "Written for this client. Overrides general policy where it differs."
+              },
+              {
+                "key": "consensus",
+                "level": "red",
+                "label": "Contradicted by another source",
+                "detail": "Another retrieved source states a different value or rule."
+              },
+              {
+                "key": "sourceType",
+                "level": "amber",
+                "label": "Handover note",
+                "detail": "Informal. Useful for context, not as the final word."
+              }
+            ],
+            "score": 0.56
+          },
+          {
+            "id": "pol-mv-2026",
+            "title": "Meal vouchers Belgium: 2026 rules and maximum amounts",
+            "type": "policy",
+            "updatedAt": "2026-06-12",
+            "owner": {
+              "name": "Els Dewaele",
+              "team": "Payroll Legal BE",
+              "active": true
+            },
+            "scope": {
+              "country": "BE"
+            },
+            "claim": "The general maximum employer contribution for meal vouchers in Belgium for 2026 is EUR 6.91 per voucher.",
+            "relevant": true,
+            "signals": [
+              {
+                "key": "freshness",
+                "level": "green",
+                "label": "Updated 4 months ago",
+                "detail": "Updated within the last 12 months."
+              },
+              {
+                "key": "ownership",
+                "level": "green",
+                "label": "Owned by Els Dewaele",
+                "detail": "Els Dewaele (Payroll Legal BE) is active and responsible for this document."
+              },
+              {
+                "key": "scope",
+                "level": "green",
+                "label": "Applies to BE",
+                "detail": "General rule for this country. Check for client or sector exceptions."
+              },
+              {
+                "key": "consensus",
+                "level": "green",
+                "label": "Consistent with other sources",
+                "detail": "Other retrieved sources agree."
+              },
+              {
+                "key": "sourceType",
+                "level": "green",
+                "label": "Official policy",
+                "detail": "Reviewed document with a formal status."
+              }
+            ],
+            "score": 1
+          },
+          {
+            "id": "pol-mv-2026-copy",
+            "title": "Copy of Meal vouchers Belgium rules (shared drive)",
+            "type": "policy",
+            "updatedAt": "2025-02-03",
+            "scope": {
+              "country": "BE"
+            },
+            "claim": "The general maximum employer contribution for meal vouchers in Belgium is EUR 6.91.",
+            "relevant": true,
+            "signals": [
+              {
+                "key": "freshness",
+                "level": "amber",
+                "label": "Updated 20 months ago",
+                "detail": "Between 1 and 2 years old. Payroll amounts are indexed yearly, so verify."
+              },
+              {
+                "key": "ownership",
+                "level": "red",
+                "label": "No owner",
+                "detail": "Nobody is responsible for keeping this document correct."
+              },
+              {
+                "key": "scope",
+                "level": "green",
+                "label": "Applies to BE",
+                "detail": "General rule for this country. Check for client or sector exceptions."
+              },
+              {
+                "key": "consensus",
+                "level": "green",
+                "label": "Consistent with other sources",
+                "detail": "Other retrieved sources agree."
+              },
+              {
+                "key": "sourceType",
+                "level": "green",
+                "label": "Official policy",
+                "detail": "Reviewed document with a formal status."
+              }
+            ],
+            "score": 0.78
+          },
+          {
+            "id": "pol-ecocheques-2025",
+            "title": "Eco vouchers Belgium: amounts and eligibility",
+            "type": "policy",
+            "updatedAt": "2025-07-01",
+            "owner": {
+              "name": "Els Dewaele",
+              "team": "Payroll Legal BE",
+              "active": true
+            },
+            "scope": {
+              "country": "BE"
+            },
+            "claim": "Eco vouchers in Belgium have a maximum value of EUR 250 per employee per year.",
+            "relevant": false,
+            "signals": [
+              {
+                "key": "freshness",
+                "level": "amber",
+                "label": "Updated 15 months ago",
+                "detail": "Between 1 and 2 years old. Payroll amounts are indexed yearly, so verify."
+              },
+              {
+                "key": "ownership",
+                "level": "green",
+                "label": "Owned by Els Dewaele",
+                "detail": "Els Dewaele (Payroll Legal BE) is active and responsible for this document."
+              },
+              {
+                "key": "scope",
+                "level": "green",
+                "label": "Applies to BE",
+                "detail": "General rule for this country. Check for client or sector exceptions."
+              },
+              {
+                "key": "consensus",
+                "level": "green",
+                "label": "Consistent with other sources",
+                "detail": "Other retrieved sources agree."
+              },
+              {
+                "key": "sourceType",
+                "level": "green",
+                "label": "Official policy",
+                "detail": "Reviewed document with a formal status."
+              }
+            ],
+            "score": 0.89
+          },
+          {
+            "id": "chat-mv-nl",
+            "title": "Teams: #payroll-questions, meal allowance thread",
+            "type": "chat",
+            "updatedAt": "2026-08-27",
+            "owner": {
+              "name": "Jeroen de Vries",
+              "team": "Payroll NL",
+              "active": true
+            },
+            "scope": {
+              "country": "NL"
+            },
+            "claim": "The maximum tax-free meal allowance in the Netherlands is EUR 8.00 per day.",
+            "relevant": false,
+            "signals": [
+              {
+                "key": "freshness",
+                "level": "green",
+                "label": "Updated 1 months ago",
+                "detail": "Updated within the last 12 months."
+              },
+              {
+                "key": "ownership",
+                "level": "green",
+                "label": "Owned by Jeroen de Vries",
+                "detail": "Jeroen de Vries (Payroll NL) is active and responsible for this document."
+              },
+              {
+                "key": "scope",
+                "level": "red",
+                "label": "NL rule, client is BE",
+                "detail": "Different country, different legislation. Do not apply."
+              },
+              {
+                "key": "consensus",
+                "level": "green",
+                "label": "Consistent with other sources",
+                "detail": "Other retrieved sources agree."
+              },
+              {
+                "key": "sourceType",
+                "level": "amber",
+                "label": "Chat message",
+                "detail": "Informal. Useful for context, not as the final word."
+              }
+            ],
+            "score": 0.61
+          }
+        ],
+        "conflicts": [
+          {
+            "a": "cla-verhaeghe-2025",
+            "b": "ho-verhaeghe-2025",
+            "what": "employer contribution of EUR 6.91 vs EUR 5.91"
+          }
+        ],
+        "askWho": {
+          "name": "Anke Peeters",
+          "team": "Client Services BE",
+          "reason": "Owns \"Client agreement note: Bakkerij Verhaeghe meal voucher scheme (PC 118)\""
+        }
+      }
+    }
+  },
+  "verhaeghe::how many days of notice does the employer give to terminate a fixed term contract early after two months": {
+    "question": "How many days of notice does the employer give to terminate a fixed-term contract early after two months?",
+    "clientId": "verhaeghe",
+    "at": "2026-09-30T18:13:55.863Z",
+    "response": {
+      "answer": "For Bakkerij Verhaeghe, a fixed-term contract can be terminated early during the first half of the contract (and up to the first 6 months) using the notice period of an open-ended contract. Since the employee has two months of seniority (less than 3 months), the employer must give a notice period of 1 week. This notice must be given in writing and starts on the Monday following its notification.",
+      "receipt": {
+        "verdict": "safe",
+        "summary": "Current, owned, in scope and consistent. Safe to act on.",
+        "sources": [
+          {
+            "id": "pol-fixedterm-2026",
+            "title": "Fixed-term contracts Belgium: early termination and notice",
+            "type": "policy",
+            "updatedAt": "2026-03-20",
+            "owner": {
+              "name": "Sofie Claes",
+              "team": "Payroll Legal BE",
+              "active": true
+            },
+            "scope": {
+              "country": "BE"
+            },
+            "claim": "During the first half of a fixed-term contract (and up to the first 6 months), either party can terminate it early with the notice period of an open-ended contract, which is 1 week for the employer if seniority is under 3 months.",
+            "relevant": true,
+            "signals": [
+              {
+                "key": "freshness",
+                "level": "green",
+                "label": "Updated 6 months ago",
+                "detail": "Updated within the last 12 months."
+              },
+              {
+                "key": "ownership",
+                "level": "green",
+                "label": "Owned by Sofie Claes",
+                "detail": "Sofie Claes (Payroll Legal BE) is active and responsible for this document."
+              },
+              {
+                "key": "scope",
+                "level": "green",
+                "label": "Applies to BE",
+                "detail": "General rule for this country. Check for client or sector exceptions."
+              },
+              {
+                "key": "consensus",
+                "level": "green",
+                "label": "Only source, not contradicted",
+                "detail": "No second source was found, but nothing contradicts it either."
+              },
+              {
+                "key": "sourceType",
+                "level": "green",
+                "label": "Official policy",
+                "detail": "Reviewed document with a formal status."
+              }
+            ],
+            "score": 1
+          }
+        ],
+        "conflicts": [],
+        "askWho": {
+          "name": "Sofie Claes",
+          "team": "Payroll Legal BE",
+          "reason": "Owns \"Fixed-term contracts Belgium: early termination and notice\""
+        }
+      }
+    }
+  },
+  "verhaeghe::what is the bicycle allowance for a cross border worker living in luxembourg": {
+    "question": "What is the bicycle allowance for a cross-border worker living in Luxembourg?",
+    "clientId": "verhaeghe",
+    "at": "2026-09-30T18:13:59.730Z",
+    "response": {
+      "answer": "The retrieved documents do not contain information about the bicycle allowance for cross-border workers living in Luxembourg.",
+      "receipt": {
+        "verdict": "stop",
+        "summary": "No reliable source applies to this client and country. Ask an expert.",
+        "sources": [
+          {
+            "id": "pol-bike-2026",
+            "title": "Bicycle allowance Belgium 2026",
+            "type": "policy",
+            "updatedAt": "2026-01-15",
+            "owner": {
+              "name": "Sofie Claes",
+              "team": "Payroll Legal BE",
+              "active": true
+            },
+            "scope": {
+              "country": "BE"
+            },
+            "claim": "The document outlines the general Belgian bicycle allowance for 2026 as EUR 0.36 per kilometre, capped at EUR 3,610 per year.",
+            "relevant": false,
+            "signals": [
+              {
+                "key": "freshness",
+                "level": "green",
+                "label": "Updated 9 months ago",
+                "detail": "Updated within the last 12 months."
+              },
+              {
+                "key": "ownership",
+                "level": "green",
+                "label": "Owned by Sofie Claes",
+                "detail": "Sofie Claes (Payroll Legal BE) is active and responsible for this document."
+              },
+              {
+                "key": "scope",
+                "level": "green",
+                "label": "Applies to BE",
+                "detail": "General rule for this country. Check for client or sector exceptions."
+              },
+              {
+                "key": "consensus",
+                "level": "green",
+                "label": "Only source, not contradicted",
+                "detail": "No second source was found, but nothing contradicts it either."
+              },
+              {
+                "key": "sourceType",
+                "level": "green",
+                "label": "Official policy",
+                "detail": "Reviewed document with a formal status."
+              }
+            ],
+            "score": 1
+          }
+        ],
+        "conflicts": [],
+        "askWho": {
+          "name": "Sofie Claes",
+          "team": "Payroll Legal BE",
+          "reason": "Expert on contracts, termination, notice period, bicycle allowance for BE"
+        }
+      }
+    }
+  },
+  "delcour::what is the maximum eco voucher amount for delcour logistics": {
+    "question": "What is the maximum eco voucher amount for Delcour Logistics?",
+    "clientId": "delcour",
+    "at": "2026-09-30T18:14:05.649Z",
+    "response": {
+      "answer": "For Delcour Logistics, the maximum eco voucher amount is EUR 250 per employee per year, in accordance with the general Belgian policy. This amount is exempt from social security and tax when granted by a collective labor agreement. The client-specific handover note does not specify any different amount or exception for eco vouchers.",
+      "receipt": {
+        "verdict": "verify",
+        "summary": "Usable, but updated 15 months ago. Quick check advised.",
+        "sources": [
+          {
+            "id": "pol-ecocheques-2025",
+            "title": "Eco vouchers Belgium: amounts and eligibility",
+            "type": "policy",
+            "updatedAt": "2025-07-01",
+            "owner": {
+              "name": "Els Dewaele",
+              "team": "Payroll Legal BE",
+              "active": true
+            },
+            "scope": {
+              "country": "BE"
+            },
+            "claim": "The maximum eco voucher amount in Belgium is EUR 250 per employee per year.",
+            "relevant": true,
+            "signals": [
+              {
+                "key": "freshness",
+                "level": "amber",
+                "label": "Updated 15 months ago",
+                "detail": "Between 1 and 2 years old. Payroll amounts are indexed yearly, so verify."
+              },
+              {
+                "key": "ownership",
+                "level": "green",
+                "label": "Owned by Els Dewaele",
+                "detail": "Els Dewaele (Payroll Legal BE) is active and responsible for this document."
+              },
+              {
+                "key": "scope",
+                "level": "green",
+                "label": "Applies to BE",
+                "detail": "General rule for this country. Check for client or sector exceptions."
+              },
+              {
+                "key": "consensus",
+                "level": "green",
+                "label": "Only source, not contradicted",
+                "detail": "No second source was found, but nothing contradicts it either."
+              },
+              {
+                "key": "sourceType",
+                "level": "green",
+                "label": "Official policy",
+                "detail": "Reviewed document with a formal status."
+              }
+            ],
+            "score": 0.89
+          },
+          {
+            "id": "ho-delcour-2025",
+            "title": "Handover note: Delcour Logistics",
+            "type": "handover",
+            "updatedAt": "2025-12-02",
+            "owner": {
+              "name": "Anke Peeters",
+              "team": "Client Services BE",
+              "active": true
+            },
+            "scope": {
+              "country": "BE",
+              "clientId": "delcour"
+            },
+            "claim": "Delcour Logistics has 210 employees in PC 140.03 and provides meal vouchers of EUR 8.00 with the standard maximum split.",
+            "relevant": false,
+            "signals": [
+              {
+                "key": "freshness",
+                "level": "green",
+                "label": "Updated 10 months ago",
+                "detail": "Updated within the last 12 months."
+              },
+              {
+                "key": "ownership",
+                "level": "green",
+                "label": "Owned by Anke Peeters",
+                "detail": "Anke Peeters (Client Services BE) is active and responsible for this document."
+              },
+              {
+                "key": "scope",
+                "level": "green",
+                "label": "Specific to Delcour Logistics",
+                "detail": "Written for this client. Overrides general policy where it differs."
+              },
+              {
+                "key": "consensus",
+                "level": "green",
+                "label": "Only source, not contradicted",
+                "detail": "No second source was found, but nothing contradicts it either."
+              },
+              {
+                "key": "sourceType",
+                "level": "amber",
+                "label": "Handover note",
+                "detail": "Informal. Useful for context, not as the final word."
+              }
+            ],
+            "score": 0.94
+          },
+          {
+            "id": "pol-mv-2026",
+            "title": "Meal vouchers Belgium: 2026 rules and maximum amounts",
+            "type": "policy",
+            "updatedAt": "2026-06-12",
+            "owner": {
+              "name": "Els Dewaele",
+              "team": "Payroll Legal BE",
+              "active": true
+            },
+            "scope": {
+              "country": "BE"
+            },
+            "claim": "The maximum face value for meal vouchers in Belgium is EUR 8.00, with an employer contribution of EUR 6.91.",
+            "relevant": false,
+            "signals": [
+              {
+                "key": "freshness",
+                "level": "green",
+                "label": "Updated 4 months ago",
+                "detail": "Updated within the last 12 months."
+              },
+              {
+                "key": "ownership",
+                "level": "green",
+                "label": "Owned by Els Dewaele",
+                "detail": "Els Dewaele (Payroll Legal BE) is active and responsible for this document."
+              },
+              {
+                "key": "scope",
+                "level": "green",
+                "label": "Applies to BE",
+                "detail": "General rule for this country. Check for client or sector exceptions."
+              },
+              {
+                "key": "consensus",
+                "level": "green",
+                "label": "Only source, not contradicted",
+                "detail": "No second source was found, but nothing contradicts it either."
+              },
+              {
+                "key": "sourceType",
+                "level": "green",
+                "label": "Official policy",
+                "detail": "Reviewed document with a formal status."
+              }
+            ],
+            "score": 1
+          }
+        ],
+        "conflicts": [],
+        "askWho": {
+          "name": "Els Dewaele",
+          "team": "Payroll Legal BE",
+          "reason": "Owns \"Eco vouchers Belgium: amounts and eligibility\""
+        }
+      }
+    }
+  }
+}
