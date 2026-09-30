@@ -23,6 +23,7 @@ export function Receipt({
 }) {
   const { answer, receipt } = result;
   const titleOf = (id: string) => receipt.sources.find((s) => s.id === id)?.title ?? id;
+  const sourcesByReliability = [...receipt.sources].sort((a, b) => b.score - a.score);
 
   return (
     <div className="space-y-4">
@@ -93,7 +94,7 @@ export function Receipt({
           <span className="font-mono text-xs text-[var(--muted2)]">{receipt.sources.length}</span>
         </div>
         <div className="space-y-3">
-          {receipt.sources.map((s, i) => (
+          {sourcesByReliability.map((s, i) => (
             <SourceCard key={s.id} source={s} rank={i + 1} />
           ))}
         </div>

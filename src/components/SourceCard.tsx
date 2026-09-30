@@ -96,8 +96,7 @@ export function SourceCard({ source, rank }: { source: SourceCardT; rank: number
             </li>
           ))}
           <li className="pt-1 text-xs text-[var(--muted2)] font-mono">
-            weights: scope ×3 · freshness ×2 · consensus ×2 · ownership ×1 · type ×1 · green 1 /
-            amber ½ / red 0
+            weights: scope ×3 · freshness ×2 · consensus ×2 · ownership ×1 · type ×1
           </li>
         </ul>
       )}
