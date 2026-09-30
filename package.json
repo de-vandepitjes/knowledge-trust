@@ -8,9 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
+    "check:demo-accounts": "node scripts/check-demo-accounts.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check": "npm run lint && npm run typecheck && npm run build"
+    "check": "npm run lint && npm run typecheck && npm run check:demo-accounts && npm run build"
   },
   "dependencies": {
     "lucide-react": "^1.49.0",
