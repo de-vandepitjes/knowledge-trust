@@ -2,12 +2,12 @@
   "verhaeghe::what is the maximum employer contribution for meal vouchers for bakkerij verhaeghe this year": {
     "question": "What is the maximum employer contribution for meal vouchers for Bakkerij Verhaeghe this year?",
     "clientId": "verhaeghe",
-    "at": "2026-09-30T18:13:52.234Z",
+    "at": "2026-09-30T18:17:18.163Z",
     "response": {
-      "answer": "For Bakkerij Verhaeghe, the maximum employer contribution for meal vouchers is EUR 6.91 per voucher (with a face value of EUR 8.00 and an employee contribution of EUR 1.09). This maximum scheme was adopted starting 1 January 2026, replacing their previous employer contribution of EUR 5.91.",
+      "answer": "For Bakkerij Verhaeghe, the maximum employer contribution for meal vouchers this year (2026) is EUR 6.91 per voucher (with a face value of EUR 8.00). Although they previously contributed EUR 5.91, the client transitioned to the maximum meal voucher scheme effective 1 January 2026 to remain competitive.",
       "receipt": {
         "verdict": "verify",
-        "summary": "Sources disagree (employer contribution of EUR 6.91 vs EUR 5.91). Confirm with the owner before acting.",
+        "summary": "Sources disagree (employer contribution of EUR 6.91 starting January 2026 vs EUR 5.91 previously applied in 2025). Confirm with the owner before acting.",
         "sources": [
           {
             "id": "cla-verhaeghe-2025",
@@ -124,7 +124,7 @@
             "scope": {
               "country": "BE"
             },
-            "claim": "The general maximum employer contribution for meal vouchers in Belgium for 2026 is EUR 6.91 per voucher.",
+            "claim": "The maximum employer contribution for meal vouchers in Belgium for 2026 is EUR 6.91 per voucher.",
             "relevant": true,
             "signals": [
               {
@@ -168,7 +168,7 @@
             "scope": {
               "country": "BE"
             },
-            "claim": "The general maximum employer contribution for meal vouchers in Belgium is EUR 6.91.",
+            "claim": "The maximum employer contribution for meal vouchers in Belgium is EUR 6.91.",
             "relevant": true,
             "signals": [
               {
@@ -266,7 +266,7 @@
             "scope": {
               "country": "NL"
             },
-            "claim": "The maximum tax-free meal allowance in the Netherlands is EUR 8.00 per day.",
+            "claim": "The maximum tax-free meal allowance from the employer in the Netherlands is EUR 8.00 per day.",
             "relevant": false,
             "signals": [
               {
@@ -307,7 +307,7 @@
           {
             "a": "cla-verhaeghe-2025",
             "b": "ho-verhaeghe-2025",
-            "what": "employer contribution of EUR 6.91 vs EUR 5.91"
+            "what": "employer contribution of EUR 6.91 starting January 2026 vs EUR 5.91 previously applied in 2025"
           }
         ],
         "askWho": {

@@ -32,7 +32,7 @@ npm run dev                  # http://localhost:3000
 - [x] Concept chosen
 - [x] Synthetic corpus
 - [x] Core flow (API)
-- [ ] Trust signals UI
+- [x] Trust signals UI
 - [ ] Aikido baseline + fixes
 - [ ] Demo video
 
