@@ -12,7 +12,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
-  const [showPw, setShowPw] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   async function submit(e: FormEvent) {
     e.preventDefault();
@@ -63,30 +63,37 @@ export default function LoginPage() {
               />
             </div>
           </label>
-          <label className="block">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted2)]">
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted2)]"
+            >
               Password
-            </span>
-            <div className="relative mt-1.5">
-              <KeyRound className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--muted2)]" />
-              <input
-                type={showPw ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete="current-password"
-                required
-                className="w-full rounded-xl border border-white/10 bg-white/[0.05] py-2.5 pl-10 pr-10 text-white outline-none transition focus:border-[var(--selected-stroke)] focus:ring-4 focus:ring-sky-400/10"
-              />
+            </label>
+            <div className="mt-1.5 flex items-center rounded-xl border border-white/10 bg-white/[0.05] transition focus-within:border-[var(--selected-stroke)] focus-within:ring-4 focus-within:ring-sky-400/10">
+              <div className="relative min-w-0 flex-1">
+                <KeyRound className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--muted2)]" />
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="current-password"
+                  required
+                  className="w-full min-w-0 bg-transparent py-2.5 pl-10 pr-3 text-white outline-none"
+                />
+              </div>
               <button
                 type="button"
-                tabIndex={-1}
-                onClick={() => setShowPw(!showPw)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--muted2)] hover:text-white transition"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                aria-pressed={showPassword}
+                onClick={() => setShowPassword((visible) => !visible)}
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-r-xl text-[var(--muted2)] transition hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--selected-stroke)]"
               >
-                {showPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </button>
             </div>
-          </label>
+          </div>
 
           {error && (
             <div className="rounded-xl border border-rose-300/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-100">

@@ -29,7 +29,6 @@ export function ClientSelector({
 
   useEffect(() => {
     if (open) {
-      setSearch("");
       setTimeout(() => inputRef.current?.focus(), 0);
     }
   }, [open]);
@@ -39,14 +38,17 @@ export function ClientSelector({
     (c) =>
       c.name.toLowerCase().includes(search.toLowerCase()) ||
       c.country.toLowerCase().includes(search.toLowerCase()) ||
-      (c.pc ?? "").includes(search)
+      (c.pc ?? "").includes(search),
   );
 
   return (
     <div ref={ref} className="relative">
       <button
         type="button"
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          if (!open) setSearch("");
+          setOpen(!open);
+        }}
         className="cozy-press flex w-full items-center justify-between gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-2.5 text-left text-sm text-white transition hover:bg-white/[0.08]"
       >
         {selected ? (
@@ -60,7 +62,9 @@ export function ClientSelector({
         ) : (
           <span className="text-[var(--muted2)]">Select a client…</span>
         )}
-        <ChevronDown className={`h-4 w-4 text-[var(--muted2)] transition ${open ? "rotate-180" : ""}`} />
+        <ChevronDown
+          className={`h-4 w-4 text-[var(--muted2)] transition ${open ? "rotate-180" : ""}`}
+        />
       </button>
 
       {open && (
@@ -75,7 +79,11 @@ export function ClientSelector({
               className="flex-1 bg-transparent text-sm text-white outline-none placeholder:text-[var(--muted2)]"
             />
             {search && (
-              <button type="button" onClick={() => setSearch("")} className="text-[var(--muted2)] hover:text-white">
+              <button
+                type="button"
+                onClick={() => setSearch("")}
+                className="text-[var(--muted2)] hover:text-white"
+              >
                 <X className="h-3.5 w-3.5" />
               </button>
             )}
