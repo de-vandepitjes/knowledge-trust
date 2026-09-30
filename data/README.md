@@ -6,4 +6,4 @@ Rules:
 
 - **Fake data only.** No real SD Worx, client or personal data. Ever.
 - Plant the friction on purpose: duplicates, contradictions, stale docs, docs whose owner has left.
-- Keep a `manifest.json` next to the files describing each document's owner, date, country/scope and status so the app can reason about trust signals.
+- `manifest.json` holds each document's metadata (owner, date, scope, tags). `docs.json` holds the content keyed by document id. Both are imported statically; the app does not read files at runtime.

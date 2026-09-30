@@ -58,7 +58,6 @@ export type DocMeta = {
   ownerId?: string;
   scope: Scope;
   tags: string[];
-  file: string; // relative to data/docs
 };
 export type Person = { id: string; name: string; team: string; active: boolean; leftAt?: string };
 export type Expert = { id: string; name: string; team: string; country: string; topics: string[] };

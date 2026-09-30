@@ -1,6 +1,11 @@
 {
   "people": [
-    { "id": "els", "name": "Els Dewaele", "team": "Payroll Legal BE", "active": true },
+    {
+      "id": "els",
+      "name": "Els Dewaele",
+      "team": "Payroll Legal BE",
+      "active": true
+    },
     {
       "id": "karel",
       "name": "Karel Moens",
@@ -8,14 +13,44 @@
       "active": false,
       "leftAt": "2025-06-30"
     },
-    { "id": "sofie", "name": "Sofie Claes", "team": "Payroll Legal BE", "active": true },
-    { "id": "jeroen", "name": "Jeroen de Vries", "team": "Payroll NL", "active": true },
-    { "id": "anke", "name": "Anke Peeters", "team": "Client Services BE", "active": true }
+    {
+      "id": "sofie",
+      "name": "Sofie Claes",
+      "team": "Payroll Legal BE",
+      "active": true
+    },
+    {
+      "id": "jeroen",
+      "name": "Jeroen de Vries",
+      "team": "Payroll NL",
+      "active": true
+    },
+    {
+      "id": "anke",
+      "name": "Anke Peeters",
+      "team": "Client Services BE",
+      "active": true
+    }
   ],
   "clients": [
-    { "id": "verhaeghe", "name": "Bakkerij Verhaeghe", "country": "BE", "pc": "118" },
-    { "id": "delcour", "name": "Delcour Logistics", "country": "BE", "pc": "140.03" },
-    { "id": "fritzco", "name": "FritzCo Retail", "country": "BE", "pc": "201" }
+    {
+      "id": "verhaeghe",
+      "name": "Bakkerij Verhaeghe",
+      "country": "BE",
+      "pc": "118"
+    },
+    {
+      "id": "delcour",
+      "name": "Delcour Logistics",
+      "country": "BE",
+      "pc": "140.03"
+    },
+    {
+      "id": "fritzco",
+      "name": "FritzCo Retail",
+      "country": "BE",
+      "pc": "201"
+    }
   ],
   "docs": [
     {
@@ -24,18 +59,20 @@
       "type": "policy",
       "updatedAt": "2026-06-12",
       "ownerId": "els",
-      "scope": { "country": "BE" },
-      "tags": ["meal vouchers", "maaltijdcheques", "employer contribution", "maximum", "2026"],
-      "file": "pol-mv-2026.md"
+      "scope": {
+        "country": "BE"
+      },
+      "tags": ["meal vouchers", "maaltijdcheques", "employer contribution", "maximum", "2026"]
     },
     {
       "id": "pol-mv-2026-copy",
       "title": "Copy of Meal vouchers Belgium rules (shared drive)",
       "type": "policy",
       "updatedAt": "2025-02-03",
-      "scope": { "country": "BE" },
-      "tags": ["meal vouchers", "maaltijdcheques", "employer contribution", "maximum"],
-      "file": "pol-mv-2026-copy.md"
+      "scope": {
+        "country": "BE"
+      },
+      "tags": ["meal vouchers", "maaltijdcheques", "employer contribution", "maximum"]
     },
     {
       "id": "ho-verhaeghe-2025",
@@ -43,9 +80,11 @@
       "type": "handover",
       "updatedAt": "2025-05-20",
       "ownerId": "karel",
-      "scope": { "country": "BE", "clientId": "verhaeghe" },
-      "tags": ["handover", "verhaeghe", "meal vouchers", "bakery", "PC 118"],
-      "file": "ho-verhaeghe-2025.md"
+      "scope": {
+        "country": "BE",
+        "clientId": "verhaeghe"
+      },
+      "tags": ["handover", "verhaeghe", "meal vouchers", "bakery", "PC 118"]
     },
     {
       "id": "chat-mv-nl",
@@ -53,9 +92,10 @@
       "type": "chat",
       "updatedAt": "2026-08-27",
       "ownerId": "jeroen",
-      "scope": { "country": "NL" },
-      "tags": ["meal vouchers", "meal allowance", "maximum", "teams"],
-      "file": "chat-mv-nl.md"
+      "scope": {
+        "country": "NL"
+      },
+      "tags": ["meal vouchers", "meal allowance", "maximum", "teams"]
     },
     {
       "id": "cla-verhaeghe-2025",
@@ -63,9 +103,12 @@
       "type": "cla",
       "updatedAt": "2025-11-04",
       "ownerId": "anke",
-      "scope": { "country": "BE", "pc": "118", "clientId": "verhaeghe" },
-      "tags": ["meal vouchers", "verhaeghe", "PC 118", "client agreement", "employer contribution"],
-      "file": "cla-verhaeghe-2025.md"
+      "scope": {
+        "country": "BE",
+        "pc": "118",
+        "clientId": "verhaeghe"
+      },
+      "tags": ["meal vouchers", "verhaeghe", "PC 118", "client agreement", "employer contribution"]
     },
     {
       "id": "pol-fixedterm-2026",
@@ -73,9 +116,10 @@
       "type": "policy",
       "updatedAt": "2026-03-20",
       "ownerId": "sofie",
-      "scope": { "country": "BE" },
-      "tags": ["fixed-term", "temporary contract", "notice period", "termination", "opzegtermijn"],
-      "file": "pol-fixedterm-2026.md"
+      "scope": {
+        "country": "BE"
+      },
+      "tags": ["fixed-term", "temporary contract", "notice period", "termination", "opzegtermijn"]
     },
     {
       "id": "pol-ecocheques-2025",
@@ -83,9 +127,10 @@
       "type": "policy",
       "updatedAt": "2025-07-01",
       "ownerId": "els",
-      "scope": { "country": "BE" },
-      "tags": ["eco vouchers", "ecocheques", "maximum"],
-      "file": "pol-ecocheques-2025.md"
+      "scope": {
+        "country": "BE"
+      },
+      "tags": ["eco vouchers", "ecocheques", "maximum"]
     },
     {
       "id": "pol-bike-2026",
@@ -93,9 +138,10 @@
       "type": "policy",
       "updatedAt": "2026-01-15",
       "ownerId": "sofie",
-      "scope": { "country": "BE" },
-      "tags": ["bicycle allowance", "fietsvergoeding", "commuting"],
-      "file": "pol-bike-2026.md"
+      "scope": {
+        "country": "BE"
+      },
+      "tags": ["bicycle allowance", "fietsvergoeding", "commuting"]
     },
     {
       "id": "ho-delcour-2025",
@@ -103,9 +149,11 @@
       "type": "handover",
       "updatedAt": "2025-12-02",
       "ownerId": "anke",
-      "scope": { "country": "BE", "clientId": "delcour" },
-      "tags": ["handover", "delcour", "shift premiums", "PC 140.03"],
-      "file": "ho-delcour-2025.md"
+      "scope": {
+        "country": "BE",
+        "clientId": "delcour"
+      },
+      "tags": ["handover", "delcour", "shift premiums", "PC 140.03"]
     },
     {
       "id": "cla-fritzco-2026",
@@ -113,9 +161,12 @@
       "type": "cla",
       "updatedAt": "2026-02-10",
       "ownerId": "anke",
-      "scope": { "country": "BE", "pc": "201", "clientId": "fritzco" },
-      "tags": ["fritzco", "bonus", "PC 201", "meal vouchers"],
-      "file": "cla-fritzco-2026.md"
+      "scope": {
+        "country": "BE",
+        "pc": "201",
+        "clientId": "fritzco"
+      },
+      "tags": ["fritzco", "bonus", "PC 201", "meal vouchers"]
     }
   ]
 }
