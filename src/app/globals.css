@@ -11,8 +11,8 @@
   --text: rgba(255, 255, 255, 0.92);
   --muted: rgba(255, 255, 255, 0.82);
   --muted2: rgba(255, 255, 255, 0.65);
-  --accent: hsl(178 64% 56%);
-  --accent-2: hsl(196 82% 60%);
+  --accent: hsl(199 89% 48%);
+  --accent-2: hsl(210 76% 58%);
   --selected: rgba(14, 165, 233, 0.4);
   --selected-stroke: rgba(56, 189, 248, 0.45);
 }
@@ -86,7 +86,7 @@ body {
   margin: calc(13px * var(--fold-scale));
   position: relative;
   transform: rotateZ(45deg);
-  filter: drop-shadow(0 0 12px rgba(103, 232, 249, 0.18));
+  filter: drop-shadow(0 0 12px rgba(96, 165, 250, 0.18));
 }
 .fold-loader__cube {
   float: left;
@@ -99,7 +99,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #f8fafc 0%, #bdeff3 58%, #67e8f9 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #bfdbfe 58%, #60a5fa 100%);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
   animation: fold-cube 2.4s infinite linear both;
   animation-delay: -1.2s;
@@ -236,7 +236,7 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, hsl(177 66% 58%) 0%, hsl(196 82% 60%) 100%);
+  background: linear-gradient(135deg, hsl(199 89% 52%) 0%, hsl(217 72% 62%) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -244,8 +244,8 @@ body {
 
 .btn-primary {
   background: var(--accent);
-  color: hsl(213 40% 8%);
-  box-shadow: 0 0 40px -12px rgba(87, 224, 210, 0.5);
+  color: hsl(213 40% 98%);
+  box-shadow: 0 0 40px -12px rgba(14, 165, 233, 0.5);
 }
 
 .glow-dust::before {

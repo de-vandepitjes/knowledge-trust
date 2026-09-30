@@ -9,11 +9,11 @@ import { useEffect, useRef } from "react";
  */
 
 const COLORS = [
-  "rgba(45, 212, 191, ",
+  "rgba(96, 165, 250, ",
   "rgba(56, 189, 248, ",
-  "rgba(139, 92, 246, ",
-  "rgba(34, 197, 94, ",
-  "rgba(251, 191, 36, ",
+  "rgba(129, 140, 248, ",
+  "rgba(147, 197, 253, ",
+  "rgba(165, 180, 252, ",
 ] as const;
 
 type Node = {
@@ -255,9 +255,9 @@ export function Constellation() {
           pointer.y,
           mouseRadius,
         );
-        glow.addColorStop(0, "rgba(45, 212, 191, 0.032)");
-        glow.addColorStop(0.5, "rgba(45, 212, 191, 0.014)");
-        glow.addColorStop(1, "rgba(45, 212, 191, 0)");
+        glow.addColorStop(0, "rgba(96, 165, 250, 0.032)");
+        glow.addColorStop(0.5, "rgba(96, 165, 250, 0.014)");
+        glow.addColorStop(1, "rgba(96, 165, 250, 0)");
         c.fillStyle = glow;
         c.fillRect(0, 0, width, height);
       }
