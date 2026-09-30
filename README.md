@@ -1,5 +1,7 @@
 # knowledge-trust
 
+**Live demo:** https://knowledge-trust.vercel.app
+
 Tectonic Hackathon 2026 · SD Worx challenge: **Unlock the Knowledge Within** — _Find it. Understand it. Trust it._
 
 > How might we turn fragmented organisational knowledge into a trusted shared resource?
@@ -29,7 +31,7 @@ npm run dev                  # http://localhost:3000
 
 ## Deploy
 
-Vercel, region Frankfurt. Env vars: `GOOGLE_API_KEY`, `SESSION_SECRET`. `vercel --prod` from `main`.
+Live at https://knowledge-trust.vercel.app (Vercel, Frankfurt). Env vars: `GOOGLE_API_KEY`, `SESSION_SECRET`, `GEMINI_MODELS`. Deploy with `vercel deploy --prod --scope de-vandepitjes` from `main`.
 
 ## What is unfinished / known limits
 
