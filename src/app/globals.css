@@ -9,8 +9,8 @@
   --stroke: rgba(255, 255, 255, 0.12);
   --stroke-2: rgba(255, 255, 255, 0.16);
   --text: rgba(255, 255, 255, 0.92);
-  --muted: rgba(255, 255, 255, 0.7);
-  --muted2: rgba(255, 255, 255, 0.55);
+  --muted: rgba(255, 255, 255, 0.82);
+  --muted2: rgba(255, 255, 255, 0.65);
   --accent: hsl(178 64% 56%);
   --accent-2: hsl(196 82% 60%);
   --selected: rgba(14, 165, 233, 0.4);
@@ -37,25 +37,25 @@ body {
   color: var(--text);
   font-family: var(--font-manrope), "Manrope", system-ui, sans-serif;
   overflow-x: hidden;
-  /* Landing-page background: three radial glows over a navy-to-teal sweep */
+  background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+  background-attachment: fixed;
+}
+
+/* Landing / login page: constellation + radial glows */
+.landing-bg {
   background:
     radial-gradient(1200px 760px at 16% 8%, rgba(92, 96, 203, 0.26), transparent 58%),
     radial-gradient(1080px 760px at 84% 10%, rgba(32, 176, 209, 0.18), transparent 56%),
     radial-gradient(860px 620px at 50% 86%, rgba(247, 170, 107, 0.08), transparent 46%),
     linear-gradient(90deg, #1a1f57 0%, #162247 38%, #10253f 72%, #0d293a 100%);
-  background-attachment: fixed;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
+/* App page: subtle gradient with a very faint radial highlight */
+.app-bg {
+  min-height: 100vh;
   background:
-    radial-gradient(920px 560px at 18% 16%, rgba(125, 128, 255, 0.12), transparent 62%),
-    radial-gradient(900px 560px at 82% 18%, rgba(97, 230, 255, 0.1), transparent 60%),
-    linear-gradient(180deg, rgba(7, 17, 31, 0) 0%, rgba(7, 17, 31, 0.16) 100%);
+    radial-gradient(ellipse 1100px 600px at 50% 0%, rgba(20, 40, 80, 0.5), transparent 70%),
+    linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
 }
 
 /* Folding cube loader (SpinKit), themed */
@@ -168,6 +168,15 @@ body::before {
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+}
+
+/* Slightly more opaque cards on the app page for readability */
+.app-bg .cozy-card {
+  background: linear-gradient(180deg, rgba(16, 22, 48, 0.82), rgba(12, 18, 40, 0.78));
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .cozy-card-soft {

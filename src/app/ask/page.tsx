@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { LogOut, Search, Sparkles } from "lucide-react";
 import { Wordmark } from "@/components/Brand";
+import { ClientSelector } from "@/components/ClientSelector";
 import { Loader } from "@/components/Loader";
 import { Receipt } from "@/components/Receipt";
 import type { AskResponse } from "@/lib/types";
@@ -94,7 +95,7 @@ export default function AskPage() {
   const client = me?.clients.find((c) => c.id === clientId);
 
   return (
-    <div className="flex-1">
+    <div className="app-bg flex-1">
       <header className="sticky top-0 z-10 border-b border-white/10 bg-[rgba(7,10,26,0.55)] backdrop-blur-xl">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-3">
           <Wordmark size="sm" />
@@ -117,28 +118,20 @@ export default function AskPage() {
 
       <main className="mx-auto max-w-4xl px-6 py-8 space-y-5">
         <section className="cozy-card rise p-5">
-          <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted2)]">
-            Client
+          <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
+            {me && me.clients.length === 1 ? "Client" : "Clients"}
           </div>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {me?.clients.map((c) => (
-              <button
-                key={c.id}
-                onClick={() => {
-                  setClientId(c.id);
+          <div className="mt-2">
+            {me && (
+              <ClientSelector
+                clients={me.clients}
+                value={clientId}
+                onChange={(id) => {
+                  setClientId(id);
                   setResult(null);
                 }}
-                className={`cozy-press rounded-full border border-white/10 bg-white/[0.05] px-3.5 py-1.5 text-sm font-semibold text-[var(--muted)] ${
-                  c.id === clientId ? "cozy-selected" : ""
-                }`}
-              >
-                {c.name}
-                <span className="ml-1.5 font-mono text-xs opacity-70">
-                  {c.country}
-                  {c.pc ? ` · PC ${c.pc}` : ""}
-                </span>
-              </button>
-            ))}
+              />
+            )}
           </div>
 
           <form
@@ -148,7 +141,7 @@ export default function AskPage() {
             }}
             className="mt-5"
           >
-            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted2)]">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
               Question
             </div>
             <div className="mt-2 flex gap-2">

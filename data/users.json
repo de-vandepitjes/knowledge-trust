@@ -3,9 +3,9 @@
     "id": "lien",
     "name": "Lien Vermeulen",
     "role": "Payroll consultant BE",
-    "clients": ["verhaeghe", "delcour"],
+    "clients": ["verhaeghe", "delcour", "janssens", "bluewave", "vandenberghe", "mediflux", "terraverde", "solidcraft", "aeolus", "comptoir", "nexgen", "brasserie", "lux-services", "greenfield", "portside", "clarity", "artisana", "flamingo", "quickhaul", "benelux-hr", "ecotex", "crown-bakery", "meridian", "vossenhoek", "optiware", "stella-clean", "primewood"],
     "username": "lien",
-    "passwordHash": "a7ea0cd2442673326ebf4607167cb415:89602456a195a55699f0c5f01ca2806e37b35b46723d04c5792d881695a064531e17bcfceef283c5b5a6da8d57d9cfbbb6fcc38d6b400b13fa219f275377b7ed"
+    "passwordHash": "e8b55aaea66169988a934af13e9545af:2dd82e8b02e8cb36734c8afde7037d636a0fa74433c0c5f8f5ecb1cc1502a033827c30153f69fb8e96b9cc51c988a7098f53d4e5fb0e43041a9a3522e8f4acc6"
   },
   {
     "id": "tom",
@@ -13,6 +13,6 @@
     "role": "Payroll consultant BE",
     "clients": ["fritzco"],
     "username": "tom",
-    "passwordHash": "c83814dc2aa529a90ca2657bd3eb74a6:79ee7762987562a0a6784e8334c34fbed2fc6d00b87b75aa64cc6f094c4b739b56f4523a679204e342225fae62cbf7162e8799b458a4a75f5e5b2cba99af2cc9"
+    "passwordHash": "3e4310d196f291d1a8ef8fe8800cbcee:a4793909c3dd5c28d9ce3a075bbf7a4f7bd862e5d0f84a3a48869c145735f7dac9a40aa5b460fd34042e3dc3c7908b4575e45888555ee36ce0a6fbb4901ff2f8"
   }
 ]

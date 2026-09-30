@@ -43,24 +43,34 @@
     }
   ],
   "clients": [
-    {
-      "id": "verhaeghe",
-      "name": "Bakkerij Verhaeghe",
-      "country": "BE",
-      "pc": "118"
-    },
-    {
-      "id": "delcour",
-      "name": "Delcour Logistics",
-      "country": "BE",
-      "pc": "140.03"
-    },
-    {
-      "id": "fritzco",
-      "name": "FritzCo Retail",
-      "country": "BE",
-      "pc": "201"
-    }
+    { "id": "verhaeghe", "name": "Bakkerij Verhaeghe", "country": "BE", "pc": "118" },
+    { "id": "delcour", "name": "Delcour Logistics", "country": "BE", "pc": "140.03" },
+    { "id": "fritzco", "name": "FritzCo Retail", "country": "BE", "pc": "201" },
+    { "id": "janssens", "name": "Janssens & Zonen", "country": "BE", "pc": "200" },
+    { "id": "bluewave", "name": "BlueWave Pharma", "country": "BE", "pc": "207" },
+    { "id": "vandenberghe", "name": "Vandenberghe Construction", "country": "BE", "pc": "124" },
+    { "id": "mediflux", "name": "Mediflux Healthcare", "country": "BE", "pc": "330" },
+    { "id": "terraverde", "name": "TerraVerde Agriculture", "country": "BE", "pc": "144" },
+    { "id": "solidcraft", "name": "SolidCraft Engineering", "country": "BE", "pc": "111" },
+    { "id": "aeolus", "name": "Aeolus Energy", "country": "BE", "pc": "326" },
+    { "id": "comptoir", "name": "Le Comptoir Gourmand", "country": "BE", "pc": "302" },
+    { "id": "nexgen", "name": "NexGen Robotics", "country": "BE", "pc": "209" },
+    { "id": "brasserie", "name": "Brasserie du Parc", "country": "BE", "pc": "302" },
+    { "id": "lux-services", "name": "Lux Admin Services", "country": "LU" },
+    { "id": "greenfield", "name": "Greenfield Organics", "country": "BE", "pc": "145" },
+    { "id": "portside", "name": "Portside Shipping", "country": "BE", "pc": "226" },
+    { "id": "clarity", "name": "Clarity Consulting", "country": "BE", "pc": "200" },
+    { "id": "artisana", "name": "Artisana Textiles", "country": "BE", "pc": "120" },
+    { "id": "flamingo", "name": "Flamingo Events", "country": "BE", "pc": "304" },
+    { "id": "quickhaul", "name": "QuickHaul Transport", "country": "BE", "pc": "140.03" },
+    { "id": "benelux-hr", "name": "Benelux HR Partners", "country": "NL" },
+    { "id": "ecotex", "name": "Ecotex Packaging", "country": "BE", "pc": "136" },
+    { "id": "crown-bakery", "name": "Crown Bakery Group", "country": "BE", "pc": "118" },
+    { "id": "meridian", "name": "Meridian Financial", "country": "BE", "pc": "310" },
+    { "id": "vossenhoek", "name": "Vossenhoek Dairy", "country": "BE", "pc": "144" },
+    { "id": "optiware", "name": "Optiware Solutions", "country": "BE", "pc": "200" },
+    { "id": "stella-clean", "name": "Stella Cleaning Services", "country": "BE", "pc": "121" },
+    { "id": "primewood", "name": "Primewood Furniture", "country": "BE", "pc": "126" }
   ],
   "docs": [
     {

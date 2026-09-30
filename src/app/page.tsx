@@ -2,8 +2,9 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, KeyRound, UserRound } from "lucide-react";
+import { ArrowRight, Eye, EyeOff, KeyRound, UserRound } from "lucide-react";
 import { Wordmark } from "@/components/Brand";
+import { Constellation } from "@/components/Constellation";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -11,6 +12,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [showPw, setShowPw] = useState(false);
 
   async function submit(e: FormEvent) {
     e.preventDefault();
@@ -32,7 +34,8 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="relative flex-1 flex items-center justify-center p-6">
+    <main className="landing-bg relative flex-1 flex items-center justify-center p-6">
+      <Constellation />
       <div className="w-full max-w-md rise">
         <div className="mb-8 text-center">
           <div className="inline-flex">
@@ -67,13 +70,21 @@ export default function LoginPage() {
             <div className="relative mt-1.5">
               <KeyRound className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--muted2)]" />
               <input
-                type="password"
+                type={showPw ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
                 required
-                className="w-full rounded-xl border border-white/10 bg-white/[0.05] py-2.5 pl-10 pr-3 text-white outline-none transition focus:border-[var(--selected-stroke)] focus:ring-4 focus:ring-sky-400/10"
+                className="w-full rounded-xl border border-white/10 bg-white/[0.05] py-2.5 pl-10 pr-10 text-white outline-none transition focus:border-[var(--selected-stroke)] focus:ring-4 focus:ring-sky-400/10"
               />
+              <button
+                type="button"
+                tabIndex={-1}
+                onClick={() => setShowPw(!showPw)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--muted2)] hover:text-white transition"
+              >
+                {showPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
             </div>
           </label>
 
