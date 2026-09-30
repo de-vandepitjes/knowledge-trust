@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 /**
  * Interactive constellation backdrop: drifting star nodes joined by faint lines, a swirl and
- * glow around the pointer, sparks on movement. Full-viewport, fixed, behind everything.
+ * glow around the pointer. Full-viewport, fixed, behind everything.
  * Design element ported from the Portfolio-Software landing page.
  */
 
@@ -28,15 +28,6 @@ type Node = {
   color: string;
   life: number;
 };
-type Spark = {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  age: number;
-  maxAge: number;
-  color: string;
-};
 
 const rgba = (color: string, alpha: number) =>
   `${color}${Math.max(0, Math.min(1, alpha)).toFixed(3)})`;
@@ -57,30 +48,9 @@ export function Constellation() {
     let height = 0;
     let frameId = 0;
     let nodes: Node[] = [];
-    let sparks: Spark[] = [];
     const nodeMargin = 36;
     const connectionDistance = reducedMotion ? 148 : 168;
     const mouseRadius = 212;
-
-    function spawnSpark(x: number, y: number) {
-      if (sparks.length >= 42) {
-        const overflow = sparks.length - 41;
-        for (let i = 0; i <= overflow; i += 1) {
-          const s = sparks[i];
-          if (!s) break;
-          s.age = Math.max(s.age, s.maxAge * 0.76);
-        }
-      }
-      sparks.push({
-        x,
-        y,
-        vx: (Math.random() - 0.5) * 2,
-        vy: (Math.random() - 0.5) * 2,
-        age: 0,
-        maxAge: 2.1 + Math.random() * 1.1,
-        color: "rgba(45, 212, 191, ",
-      });
-    }
 
     function resetNodes() {
       const area = width * height;
@@ -122,7 +92,6 @@ export function Constellation() {
       while (out.length < target)
         out.push(make(Math.random() * width, Math.random() * height, 0.22));
       nodes = out;
-      sparks = [];
     }
 
     function resize() {
@@ -137,7 +106,7 @@ export function Constellation() {
       resetNodes();
     }
 
-    function move(nextX: number, nextY: number, clamp: number, spark: boolean) {
+    function move(nextX: number, nextY: number, clamp: number) {
       const can = pointer.active && pointer.lastX > -9000 && pointer.lastY > -9000;
       pointer.vx = can ? Math.max(-clamp, Math.min(clamp, nextX - pointer.lastX)) : 0;
       pointer.vy = can ? Math.max(-clamp, Math.min(clamp, nextY - pointer.lastY)) : 0;
@@ -146,17 +115,11 @@ export function Constellation() {
       pointer.lastX = nextX;
       pointer.lastY = nextY;
       pointer.active = true;
-      if (spark && !reducedMotion && Math.random() > 0.2) {
-        spawnSpark(pointer.x, pointer.y);
-        const speed = Math.hypot(pointer.vx, pointer.vy);
-        if (speed > 10 && Math.random() > 0.45)
-          spawnSpark(pointer.x - pointer.vx * 0.15, pointer.y - pointer.vy * 0.15);
-      }
     }
-    const onMouseMove = (e: MouseEvent) => move(e.clientX, e.clientY, 24, true);
+    const onMouseMove = (e: MouseEvent) => move(e.clientX, e.clientY, 24);
     const onTouchMove = (e: TouchEvent) => {
       const t = e.touches[0];
-      if (t) move(t.clientX, t.clientY, 20, false);
+      if (t) move(t.clientX, t.clientY, 20);
     };
     function leave() {
       pointer.active = false;
@@ -168,20 +131,6 @@ export function Constellation() {
       const c = ctx!;
       c.clearRect(0, 0, width, height);
       const time = Date.now() * 0.001;
-
-      sparks = sparks.filter((s) => s.age < s.maxAge);
-      for (const s of sparks) {
-        s.age += 0.018;
-        s.x += s.vx;
-        s.y += s.vy;
-        s.vx *= 0.972;
-        s.vy *= 0.972;
-        const life = Math.max(0, 1 - s.age / s.maxAge);
-        c.beginPath();
-        c.arc(s.x, s.y, 1.4 + life * 4.6, 0, Math.PI * 2);
-        c.fillStyle = rgba(s.color, life * 0.42);
-        c.fill();
-      }
 
       for (const n of nodes) {
         n.life += 0.003;
