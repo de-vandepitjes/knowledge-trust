@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Briefcase, Lock } from "lucide-react";
 import { Wordmark } from "@/components/Brand";
+import { Orb } from "@/components/Orb";
 
 type Persona = { id: string; name: string; role: string };
 
@@ -39,6 +40,9 @@ export default function LoginPage() {
     <main className="relative flex-1 flex items-center justify-center p-6 glow-dust">
       <div className="w-full max-w-2xl rise">
         <div className="mb-10 text-center">
+          <div className="mx-auto mb-4 flex justify-center">
+            <Orb state="solving" size={190} />
+          </div>
           <div className="inline-flex">
             <Wordmark />
           </div>

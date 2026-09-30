@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { LogOut, Search, Sparkles } from "lucide-react";
 import { Wordmark } from "@/components/Brand";
+import { Loader } from "@/components/Loader";
 import { Receipt } from "@/components/Receipt";
 import type { AskResponse } from "@/lib/types";
 
@@ -39,10 +40,8 @@ function Loading() {
     return () => clearInterval(t);
   }, []);
   return (
-    <div className="cozy-card rise p-8 text-center">
-      <div className="mx-auto mb-4 h-9 w-9 animate-spin rounded-full border-[3px] border-white/10 border-t-[var(--accent)]" />
-      <div className="font-semibold">{STEPS[i]}…</div>
-      <div className="mt-1 text-sm text-[var(--muted2)]">Building the trust receipt</div>
+    <div className="cozy-card rise p-8">
+      <Loader label={`${STEPS[i]}…`} sub="Building the trust receipt" />
     </div>
   );
 }
