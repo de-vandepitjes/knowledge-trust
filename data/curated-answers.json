@@ -30,6 +30,7 @@
   },
   "verhaeghe::how many days of notice does the employer give to terminate a fixed term contract early after two months": {
     "answer": "For Bakkerij Verhaeghe, a fixed-term contract can be terminated early during the first half of the contract (and up to the first 6 months) using the notice period of an open-ended contract. Since the employee has two months of seniority (less than 3 months), the employer must give a notice period of 1 week. This notice must be given in writing and starts on the Monday following its notification.",
+    "candidateValues": { "pol-fixedterm-2026": "1 week" },
     "claims": {
       "pol-fixedterm-2026": {
         "claim": "During the first half of a fixed-term contract (and up to the first 6 months), either party can terminate it early with the notice period of an open-ended contract, which is 1 week for the employer if seniority is under 3 months.",

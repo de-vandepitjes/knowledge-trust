@@ -21,20 +21,18 @@ export function Receipt({
   question: string;
   clientId: string;
 }) {
-  const { answer, receipt } = result;
+  const { receipt } = result;
   const titleOf = (id: string) => receipt.sources.find((s) => s.id === id)?.title ?? id;
-  const sourcesByReliability = [...receipt.sources].sort((a, b) => b.score - a.score);
+  const applicable = (source: (typeof receipt.sources)[number]) =>
+    source.relevant &&
+    !source.signals.some((signal) => signal.key === "scope" && signal.level === "red");
+  const sourcesByReliability = [...receipt.sources].sort(
+    (a, b) => Number(applicable(b)) - Number(applicable(a)) || b.score - a.score,
+  );
 
   return (
     <div className="space-y-4">
       <VerdictBanner verdict={receipt.verdict} summary={receipt.summary} />
-
-      <section className="cozy-card rise p-5" style={{ animationDelay: "60ms" }}>
-        <div className="flex items-center justify-between">
-          <Label>Answer</Label>
-        </div>
-        <p className="mt-2 text-lg leading-relaxed text-white/95">{answer}</p>
-      </section>
 
       <Candidates
         candidates={receipt.candidates ?? []}

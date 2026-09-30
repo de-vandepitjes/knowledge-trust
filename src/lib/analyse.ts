@@ -12,7 +12,11 @@ export type Analysis = {
 
 type Curated = Record<
   string,
-  { answer: string; claims: Record<string, { claim: string; relevant: boolean }> }
+  {
+    answer: string;
+    claims: Record<string, { claim: string; relevant: boolean }>;
+    candidateValues?: Record<string, string>;
+  }
 >;
 const curated = curatedJson as Curated;
 
@@ -90,18 +94,17 @@ export function analyse(
   // Candidates: relevant, same-country documents grouped by the value they state.
   const inScope = (m: DocMeta) =>
     m.scope.country === client.country && (!m.scope.pc || m.scope.pc === client.pc);
-  const byValue = new Map<string, string[]>();
+  const byValue = new Map<string, { answer: string; sourceIds: string[] }>();
   for (const { meta } of docs) {
     const cl = claims.find((c) => c.docId === meta.id)!;
     if (!cl.relevant || !inScope(meta)) continue;
-    const v = firstValue(cl.claim) ?? cl.claim.slice(0, 60);
-    const key = v.toLowerCase().replace(/,/g, ".");
-    byValue.set(key, [...(byValue.get(key) ?? []), meta.id]);
+    const answer = cur?.candidateValues?.[meta.id] ?? firstValue(cl.claim) ?? cl.claim.slice(0, 60);
+    const key = answer.toLowerCase().replace(/,/g, ".");
+    const existing = byValue.get(key);
+    if (existing) existing.sourceIds.push(meta.id);
+    else byValue.set(key, { answer, sourceIds: [meta.id] });
   }
-  const candidates = [...byValue.entries()].map(([key, ids]) => {
-    const cl = claims.find((c) => c.docId === ids[0])!;
-    return { answer: firstValue(cl.claim) ?? cl.claim.slice(0, 60), sourceIds: ids, key };
-  });
+  const candidates = [...byValue.values()];
 
   // Conflicts: two in-scope relevant documents that state different values.
   const conflicts: Conflict[] = [];

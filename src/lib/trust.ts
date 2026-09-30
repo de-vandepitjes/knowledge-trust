@@ -271,7 +271,7 @@ export function verdict(
   if (usable.length === 0)
     return {
       verdict: "stop",
-      summary: "No reliable source applies to this client and country. Ask an expert.",
+      summary: "No source answers this question for this client. Ask an expert.",
     };
   const best = usable[0];
   const sig = best.signals.filter((s) => VERDICT_KEYS.includes(s.key));

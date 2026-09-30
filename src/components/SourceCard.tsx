@@ -18,6 +18,8 @@ export function SourceCard({ source, rank }: { source: SourceCardT; rank: number
   const [open, setOpen] = useState(false);
   const [doc, setDoc] = useState<Doc | null>(null);
   const [showWhy, setShowWhy] = useState(false);
+  const applicable =
+    source.relevant && !source.signals.some((s) => s.key === "scope" && s.level === "red");
   const pct = Math.round(source.score * 100);
   const bar = pct >= 75 ? "bg-emerald-400" : pct >= 50 ? "bg-amber-400" : "bg-rose-400";
 
@@ -54,12 +56,16 @@ export function SourceCard({ source, rank }: { source: SourceCardT; rank: number
           </div>
         </div>
         <div className="w-20 shrink-0 text-right">
-          <div className="text-xl font-extrabold tabular-nums font-mono">{pct}%</div>
+          <div className="text-xl font-extrabold tabular-nums font-mono">
+            {applicable ? `${pct}%` : "N/A"}
+          </div>
           <div className="mt-1.5 h-1.5 w-full rounded-full bg-white/10">
-            <div className={`h-1.5 rounded-full ${bar}`} style={{ width: `${pct}%` }} />
+            {applicable && (
+              <div className={`h-1.5 rounded-full ${bar}`} style={{ width: `${pct}%` }} />
+            )}
           </div>
           <div className="mt-1 text-[10px] uppercase tracking-[0.14em] text-[var(--muted2)]">
-            reliability
+            {applicable ? "reliability" : "not applicable"}
           </div>
         </div>
       </div>
