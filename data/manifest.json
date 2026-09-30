@@ -4,32 +4,42 @@
       "id": "els",
       "name": "Els Dewaele",
       "team": "Payroll Legal BE",
-      "active": true
+      "active": true,
+      "level": 3,
+      "title": "Legal lead"
     },
     {
       "id": "karel",
       "name": "Karel Moens",
       "team": "Payroll Operations BE",
       "active": false,
-      "leftAt": "2025-06-30"
+      "leftAt": "2025-06-30",
+      "level": 1,
+      "title": "Consultant"
     },
     {
       "id": "sofie",
       "name": "Sofie Claes",
       "team": "Payroll Legal BE",
-      "active": true
+      "active": true,
+      "level": 3,
+      "title": "Legal lead"
     },
     {
       "id": "jeroen",
       "name": "Jeroen de Vries",
       "team": "Payroll NL",
-      "active": true
+      "active": true,
+      "level": 2,
+      "title": "Senior consultant"
     },
     {
       "id": "anke",
       "name": "Anke Peeters",
       "team": "Client Services BE",
-      "active": true
+      "active": true,
+      "level": 2,
+      "title": "Senior client partner"
     }
   ],
   "clients": [
@@ -62,7 +72,8 @@
       "scope": {
         "country": "BE"
       },
-      "tags": ["meal vouchers", "maaltijdcheques", "employer contribution", "maximum", "2026"]
+      "tags": ["meal vouchers", "maaltijdcheques", "employer contribution", "maximum", "2026"],
+      "views": 184
     },
     {
       "id": "pol-mv-2026-copy",
@@ -72,7 +83,8 @@
       "scope": {
         "country": "BE"
       },
-      "tags": ["meal vouchers", "maaltijdcheques", "employer contribution", "maximum"]
+      "tags": ["meal vouchers", "maaltijdcheques", "employer contribution", "maximum"],
+      "views": 9
     },
     {
       "id": "ho-verhaeghe-2025",
@@ -84,7 +96,8 @@
         "country": "BE",
         "clientId": "verhaeghe"
       },
-      "tags": ["handover", "verhaeghe", "meal vouchers", "bakery", "PC 118"]
+      "tags": ["handover", "verhaeghe", "meal vouchers", "bakery", "PC 118"],
+      "views": 6
     },
     {
       "id": "chat-mv-nl",
@@ -95,7 +108,8 @@
       "scope": {
         "country": "NL"
       },
-      "tags": ["meal vouchers", "meal allowance", "maximum", "teams"]
+      "tags": ["meal vouchers", "meal allowance", "maximum", "teams"],
+      "views": 41
     },
     {
       "id": "cla-verhaeghe-2025",
@@ -108,7 +122,8 @@
         "pc": "118",
         "clientId": "verhaeghe"
       },
-      "tags": ["meal vouchers", "verhaeghe", "PC 118", "client agreement", "employer contribution"]
+      "tags": ["meal vouchers", "verhaeghe", "PC 118", "client agreement", "employer contribution"],
+      "views": 27
     },
     {
       "id": "pol-fixedterm-2026",
@@ -119,7 +134,8 @@
       "scope": {
         "country": "BE"
       },
-      "tags": ["fixed-term", "temporary contract", "notice period", "termination", "opzegtermijn"]
+      "tags": ["fixed-term", "temporary contract", "notice period", "termination", "opzegtermijn"],
+      "views": 96
     },
     {
       "id": "pol-ecocheques-2025",
@@ -130,7 +146,8 @@
       "scope": {
         "country": "BE"
       },
-      "tags": ["eco vouchers", "ecocheques", "maximum"]
+      "tags": ["eco vouchers", "ecocheques", "maximum"],
+      "views": 58
     },
     {
       "id": "pol-bike-2026",
@@ -141,7 +158,8 @@
       "scope": {
         "country": "BE"
       },
-      "tags": ["bicycle allowance", "fietsvergoeding", "commuting"]
+      "tags": ["bicycle allowance", "fietsvergoeding", "commuting"],
+      "views": 73
     },
     {
       "id": "ho-delcour-2025",
@@ -153,7 +171,8 @@
         "country": "BE",
         "clientId": "delcour"
       },
-      "tags": ["handover", "delcour", "shift premiums", "PC 140.03"]
+      "tags": ["handover", "delcour", "shift premiums", "PC 140.03"],
+      "views": 12
     },
     {
       "id": "cla-fritzco-2026",
@@ -166,7 +185,8 @@
         "pc": "201",
         "clientId": "fritzco"
       },
-      "tags": ["fritzco", "bonus", "PC 201", "meal vouchers"]
+      "tags": ["fritzco", "bonus", "PC 201", "meal vouchers"],
+      "views": 15
     }
   ]
 }

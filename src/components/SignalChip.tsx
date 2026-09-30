@@ -1,4 +1,4 @@
-import { Clock, FileText, MapPin, Scale, UserRound } from "lucide-react";
+import { Award, Clock, Eye, FileText, MapPin, Scale, UserRound } from "lucide-react";
 import type { Level, Signal } from "@/lib/types";
 
 export const LEVEL_STYLE: Record<Level, string> = {
@@ -19,6 +19,8 @@ const ICON: Record<Signal["key"], React.ComponentType<{ className?: string }>> =
   scope: MapPin,
   consensus: Scale,
   sourceType: FileText,
+  authority: Award,
+  usage: Eye,
 };
 
 export function SignalChip({ signal }: { signal: Signal }) {

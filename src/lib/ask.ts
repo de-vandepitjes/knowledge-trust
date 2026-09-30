@@ -3,6 +3,7 @@ import { getContent, getPerson } from "./corpus";
 import { analyse } from "./llm";
 import { retrieve, visibleDocs } from "./retrieve";
 import {
+  authority,
   buildReceipt,
   consensus,
   freshness,
@@ -10,6 +11,7 @@ import {
   reliabilityScore,
   scopeMatch,
   sourceType,
+  usage,
 } from "./trust";
 import type { AskResponse, Client, SourceCard, User } from "./types";
 
@@ -40,6 +42,8 @@ export async function ask(question: string, user: User, client: Client): Promise
       scopeMatch(meta, client),
       consensus(meta.id, analysis.conflicts, relevantCount),
       sourceType(meta),
+      authority(meta),
+      usage(meta),
     ];
     const p = getPerson(meta.ownerId);
     return {
@@ -47,7 +51,16 @@ export async function ask(question: string, user: User, client: Client): Promise
       title: meta.title,
       type: meta.type,
       updatedAt: meta.updatedAt,
-      owner: p ? { name: p.name, team: p.team, active: p.active, leftAt: p.leftAt } : undefined,
+      owner: p
+        ? {
+            name: p.name,
+            team: p.team,
+            title: p.title,
+            level: p.level,
+            active: p.active,
+            leftAt: p.leftAt,
+          }
+        : undefined,
       scope: meta.scope,
       claim: claim?.claim ?? "Does not address this question.",
       relevant: claim?.relevant ?? false,
@@ -56,7 +69,7 @@ export async function ask(question: string, user: User, client: Client): Promise
     };
   });
 
-  const receipt = buildReceipt(question, client, cards, analysis.conflicts);
+  const receipt = buildReceipt(question, client, cards, analysis.conflicts, analysis.candidates);
   const response: AskResponse = { answer: analysis.answer, receipt };
   putCached(question, client.id, response);
   return response;

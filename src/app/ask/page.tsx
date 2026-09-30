@@ -190,7 +190,7 @@ export default function AskPage() {
         {error && (
           <div className="cozy-card rise border-rose-300/30 p-5 text-rose-100">{error}</div>
         )}
-        {result && <Receipt result={result} />}
+        {result && <Receipt result={result} question={question} clientId={clientId} />}
       </main>
     </div>
   );

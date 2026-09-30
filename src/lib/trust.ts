@@ -2,12 +2,14 @@
 import { corpus, getPerson } from "./corpus";
 import type {
   AskWho,
+  Candidate,
   Client,
   Conflict,
   DocMeta,
   Level,
   Receipt,
   Signal,
+  SignalKey,
   SourceCard,
   Verdict,
 } from "./types";
@@ -137,19 +139,110 @@ export function consensus(docId: string, conflicts: Conflict[], relevantCount: n
   };
 }
 
-const WEIGHT: Record<Signal["key"], number> = {
-  scope: 3,
-  freshness: 2,
-  consensus: 2,
-  ownership: 1,
-  sourceType: 1,
-};
+/** Who wrote it: a legal lead outranks a consultant's note. */
+export function authority(doc: DocMeta): Signal {
+  const p = getPerson(doc.ownerId);
+  const level = p?.level ?? 0;
+  if (level >= 3)
+    return {
+      key: "authority",
+      level: "green",
+      label: `Author: ${p!.title}`,
+      detail: "Written or owned by a legal lead or subject expert.",
+    };
+  if (level === 2)
+    return {
+      key: "authority",
+      level: "green",
+      label: `Author: ${p!.title}`,
+      detail: "Senior author with client responsibility.",
+    };
+  if (level === 1)
+    return {
+      key: "authority",
+      level: "amber",
+      label: `Author: ${p!.title}`,
+      detail: "Consultant-level author. Not a formal sign-off.",
+    };
+  return {
+    key: "authority",
+    level: "red",
+    label: "Unknown author",
+    detail: "No accountable author on record.",
+  };
+}
+
+/** How often colleagues consult it: a well-used document has been checked by many eyes. */
+export function usage(doc: DocMeta): Signal {
+  if (doc.views >= 40)
+    return {
+      key: "usage",
+      level: "green",
+      label: `Consulted ${doc.views}×`,
+      detail: "Frequently used across the team; errors would likely have surfaced.",
+    };
+  if (doc.views >= 10)
+    return {
+      key: "usage",
+      level: "amber",
+      label: `Consulted ${doc.views}×`,
+      detail: "Moderately used.",
+    };
+  return {
+    key: "usage",
+    level: "amber",
+    label: `Rarely consulted (${doc.views}×)`,
+    detail: "Few people have relied on this. Less battle-tested.",
+  };
+}
+
 const VALUE: Record<Level, number> = { green: 1, amber: 0.5, red: 0 };
 
+export function currentWeights(): Record<SignalKey, number> {
+  return { ...corpus().weights };
+}
+
 export function reliabilityScore(signals: Signal[]): number {
-  const total = signals.reduce((s, x) => s + WEIGHT[x.key], 0);
-  const got = signals.reduce((s, x) => s + WEIGHT[x.key] * VALUE[x.level], 0);
+  const w = corpus().weights;
+  const total = signals.reduce((s, x) => s + w[x.key], 0);
+  const got = signals.reduce((s, x) => s + w[x.key] * VALUE[x.level], 0);
   return total ? Math.round((got / total) * 100) / 100 : 0;
+}
+
+/**
+ * Candidate answers: each distinct answer the sources give, scored by its supporting sources.
+ * Score = best supporting source, plus a small bonus per extra in-scope source that agrees.
+ */
+export function scoreCandidates(
+  raw: { answer: string; sourceIds: string[] }[],
+  cards: SourceCard[],
+): { candidates: Candidate[]; margin: number } {
+  const byId = new Map(cards.map((c) => [c.id, c]));
+  const usable = (id: string) => {
+    const c = byId.get(id);
+    return c && c.relevant && !c.signals.some((s) => s.key === "scope" && s.level === "red")
+      ? c
+      : undefined;
+  };
+  const scored = raw
+    .map((r) => {
+      const support = r.sourceIds.map(usable).filter((c): c is SourceCard => !!c);
+      if (support.length === 0) return undefined;
+      const best = Math.max(...support.map((c) => c.score));
+      const score = Math.min(1, best + 0.05 * (support.length - 1));
+      return { answer: r.answer, sourceIds: support.map((c) => c.id), score, share: 0 };
+    })
+    .filter((c): c is Candidate => !!c)
+    .sort((a, b) => b.score - a.score);
+  const total = scored.reduce((s, c) => s + c.score, 0) || 1;
+  for (const c of scored) c.share = Math.round((c.score / total) * 100) / 100;
+  const margin =
+    scored.length === 0
+      ? 0
+      : scored.length === 1
+        ? 1
+        : Math.round((scored[0].share - scored[1].share) * 100) / 100;
+  return { candidates: scored, margin };
 }
 
 export function rank(cards: SourceCard[]): SourceCard[] {
@@ -233,8 +326,23 @@ export function buildReceipt(
   client: Client,
   cards: SourceCard[],
   conflicts: Conflict[],
+  rawCandidates: { answer: string; sourceIds: string[] }[] = [],
 ): Receipt {
   const ranked = rank(cards);
-  const v = verdict(ranked, conflicts);
-  return { ...v, sources: ranked, conflicts, askWho: askWho(question, ranked, client) };
+  const { candidates, margin } = scoreCandidates(rawCandidates, cards);
+  let v = verdict(ranked, conflicts);
+  // Several answers close together is a reason to verify even without an explicit conflict.
+  if (v.verdict === "safe" && candidates.length > 1 && margin < 0.25)
+    v = {
+      verdict: "verify",
+      summary: `Two answers score close together (${candidates[0].answer} vs ${candidates[1].answer}). Confirm before acting.`,
+    };
+  return {
+    ...v,
+    sources: ranked,
+    conflicts,
+    candidates,
+    margin,
+    askWho: askWho(question, ranked, client),
+  };
 }

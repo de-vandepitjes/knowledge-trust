@@ -1,27 +1,28 @@
-/** SD Worx-style mark: the slanted colour stripes, followed by the product name. */
-export function SdWorxMark({ className = "h-6" }: { className?: string }) {
-  const colors = ["#e63946", "#f77f00", "#fcbf49", "#2a9d8f", "#3a86ff"];
+import Image from "next/image";
+
+/** Official SD Worx logo (from the hackathon brief), shown unaltered on a white pill. */
+export function SdWorxLogo({ height = 22 }: { height?: number }) {
   return (
-    <svg viewBox="0 0 34 24" className={className} aria-hidden>
-      {colors.map((c, i) => (
-        <path
-          key={c}
-          d={`M${4 + i * 5} 24 L${10 + i * 5} 0 L${13 + i * 5} 0 L${7 + i * 5} 24 Z`}
-          fill={c}
-        />
-      ))}
-    </svg>
+    <span className="inline-flex items-center rounded-lg bg-white px-2.5 py-1.5">
+      <Image
+        src="/sdworx-logo.png"
+        alt="SD Worx"
+        height={height}
+        width={Math.round(height * 3.4)}
+        priority
+      />
+    </span>
   );
 }
 
 export function Wordmark({ size = "md" }: { size?: "sm" | "md" }) {
-  const text = size === "sm" ? "text-sm" : "text-base";
   return (
-    <span className={`inline-flex items-center gap-2.5 font-extrabold tracking-tight ${text}`}>
-      <SdWorxMark className={size === "sm" ? "h-5" : "h-6"} />
-      <span className="font-bold lowercase tracking-normal text-white/95">sd worx</span>
+    <span className="inline-flex items-center gap-3">
+      <SdWorxLogo height={size === "sm" ? 18 : 22} />
       <span className="h-4 w-px bg-white/20" />
-      <span className="font-semibold text-white/80">Trust Receipt</span>
+      <span className={`font-semibold text-white/85 ${size === "sm" ? "text-sm" : "text-base"}`}>
+        Trust Receipt
+      </span>
     </span>
   );
 }

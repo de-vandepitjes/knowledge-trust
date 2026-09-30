@@ -1,5 +1,6 @@
 import { GitCompareArrows, UserRoundCheck } from "lucide-react";
 import type { AskResponse } from "@/lib/types";
+import { Candidates } from "./Candidates";
 import { SourceCard } from "./SourceCard";
 import { VerdictBanner } from "./VerdictBanner";
 
@@ -11,7 +12,15 @@ function Label({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function Receipt({ result }: { result: AskResponse }) {
+export function Receipt({
+  result,
+  question,
+  clientId,
+}: {
+  result: AskResponse;
+  question: string;
+  clientId: string;
+}) {
   const { answer, receipt } = result;
   const titleOf = (id: string) => receipt.sources.find((s) => s.id === id)?.title ?? id;
 
@@ -33,6 +42,14 @@ export function Receipt({ result }: { result: AskResponse }) {
         </div>
         <p className="mt-2 text-lg leading-relaxed text-white/95">{answer}</p>
       </section>
+
+      <Candidates
+        candidates={receipt.candidates ?? []}
+        margin={receipt.margin ?? 1}
+        sources={receipt.sources}
+        question={question}
+        clientId={clientId}
+      />
 
       {(receipt.conflicts.length > 0 || receipt.askWho) && (
         <div className="grid gap-4 md:grid-cols-2">
