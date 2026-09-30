@@ -53,7 +53,7 @@ Browser (Next.js app)
 ```
 
 - **Data:** JSON files in `data/`, loaded at startup. No DB. `manifest.json` = metadata, `docs/*.md` = content.
-- **LLM:** Anthropic Claude (`claude-sonnet-5-5`) via `@anthropic-ai/sdk`, JSON output. Fallback Gemini via Google credits if we hit limits.
+- **LLM:** Gemini (`gemini-2.5-flash`) via `@google/genai`, JSON output. Free key from Google AI Studio, no card needed. Fallback: the hackathon Google Cloud credits (Vertex AI, same models) if the free tier rate-limits us.
 - **Embeddings:** skip if time is short; keyword + tag match on a 15-doc corpus is enough for the demo.
 - **Auth:** mock login (pick user from a list, signed cookie). Two users: Lien (clients A, B) and Tom (client C). This is what Aikido audits: `/api/ask` and `/sources/:id` must enforce client scope → no IDOR.
 - **Deploy:** Vercel (fastest) or Cloud Run. Do it by hour 2 so the demo video is from a URL.
