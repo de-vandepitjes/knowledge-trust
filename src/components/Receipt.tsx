@@ -31,14 +31,6 @@ export function Receipt({
       <section className="cozy-card rise p-5" style={{ animationDelay: "60ms" }}>
         <div className="flex items-center justify-between">
           <Label>Answer</Label>
-          {result.cached && (
-            <span
-              className="rounded-full border border-white/10 bg-white/[0.05] px-2 py-0.5 text-[11px] text-[var(--muted2)]"
-              title={result.cachedAt}
-            >
-              served from cache · model unavailable
-            </span>
-          )}
         </div>
         <p className="mt-2 text-lg leading-relaxed text-white/95">{answer}</p>
       </section>

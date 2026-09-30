@@ -1,6 +1,5 @@
-import { getCached, putCached } from "./cache";
 import { getContent, getPerson } from "./corpus";
-import { analyse } from "./llm";
+import { analyse } from "./analyse";
 import { retrieve, visibleDocs } from "./retrieve";
 import {
   authority,
@@ -23,16 +22,12 @@ export async function ask(question: string, user: User, client: Client): Promise
   }
 
   const docs = hits.map((h) => ({ meta: h.doc, content: getContent(h.doc.id) }));
-  let analysis;
-  try {
-    analysis = await analyse(question, client, docs);
-  } catch (e) {
-    const cached = getCached(question, client.id);
-    if (!cached) throw e;
-    console.warn("llm unavailable, serving cached answer from", cached.at);
-    return { ...cached.response, cached: true, cachedAt: cached.at };
-  }
+  const analysis = analyse(question, client, docs);
   const relevantCount = analysis.claims.filter((c) => c.relevant).length;
+  // A source is contradicted when another candidate answer exists that it does not support.
+  const groupOf = (id: string) => analysis.candidates.findIndex((c) => c.sourceIds.includes(id));
+  const contradicted = (id: string) => analysis.candidates.length > 1 && groupOf(id) >= 0;
+  const conflictsFor = (id: string) => (contradicted(id) ? [{ a: id, b: "", what: "" }] : []);
 
   const cards: SourceCard[] = docs.map(({ meta }) => {
     const claim = analysis.claims.find((c) => c.docId === meta.id);
@@ -40,7 +35,7 @@ export async function ask(question: string, user: User, client: Client): Promise
       freshness(meta),
       ownership(meta),
       scopeMatch(meta, client),
-      consensus(meta.id, analysis.conflicts, relevantCount),
+      consensus(meta.id, conflictsFor(meta.id), relevantCount),
       sourceType(meta),
       authority(meta),
       usage(meta),
@@ -70,7 +65,5 @@ export async function ask(question: string, user: User, client: Client): Promise
   });
 
   const receipt = buildReceipt(question, client, cards, analysis.conflicts, analysis.candidates);
-  const response: AskResponse = { answer: analysis.answer, receipt };
-  putCached(question, client.id, response);
-  return response;
+  return { answer: analysis.answer, receipt };
 }

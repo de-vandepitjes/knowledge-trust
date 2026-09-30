@@ -1,0 +1,66 @@
+{
+  "verhaeghe::what is the maximum employer contribution for meal vouchers for bakkerij verhaeghe this year": {
+    "answer": "For Bakkerij Verhaeghe, the maximum employer contribution for meal vouchers this year (2026) is EUR 6.91 per voucher (with a face value of EUR 8.00). Although they previously contributed EUR 5.91, the client transitioned to the maximum meal voucher scheme effective 1 January 2026 to remain competitive.",
+    "claims": {
+      "cla-verhaeghe-2025": {
+        "claim": "Bakkerij Verhaeghe transitioned to the maximum meal voucher scheme with an employer contribution of EUR 6.91 starting 1 January 2026.",
+        "relevant": true
+      },
+      "ho-verhaeghe-2025": {
+        "claim": "As of May 2025, Bakkerij Verhaeghe provided meal vouchers with an employer contribution of EUR 5.91.",
+        "relevant": true
+      },
+      "pol-mv-2026": {
+        "claim": "The maximum employer contribution for meal vouchers in Belgium for 2026 is EUR 6.91 per voucher.",
+        "relevant": true
+      },
+      "pol-mv-2026-copy": {
+        "claim": "The maximum employer contribution for meal vouchers in Belgium is EUR 6.91.",
+        "relevant": true
+      },
+      "pol-ecocheques-2025": {
+        "claim": "Eco vouchers in Belgium have a maximum value of EUR 250 per employee per year.",
+        "relevant": false
+      },
+      "chat-mv-nl": {
+        "claim": "The maximum tax-free meal allowance from the employer in the Netherlands is EUR 8.00 per day.",
+        "relevant": false
+      }
+    }
+  },
+  "verhaeghe::how many days of notice does the employer give to terminate a fixed term contract early after two months": {
+    "answer": "For Bakkerij Verhaeghe, a fixed-term contract can be terminated early during the first half of the contract (and up to the first 6 months) using the notice period of an open-ended contract. Since the employee has two months of seniority (less than 3 months), the employer must give a notice period of 1 week. This notice must be given in writing and starts on the Monday following its notification.",
+    "claims": {
+      "pol-fixedterm-2026": {
+        "claim": "During the first half of a fixed-term contract (and up to the first 6 months), either party can terminate it early with the notice period of an open-ended contract, which is 1 week for the employer if seniority is under 3 months.",
+        "relevant": true
+      }
+    }
+  },
+  "verhaeghe::what is the bicycle allowance for a cross border worker living in luxembourg": {
+    "answer": "The retrieved documents do not contain information about the bicycle allowance for cross-border workers living in Luxembourg.",
+    "claims": {
+      "pol-bike-2026": {
+        "claim": "The document outlines the general Belgian bicycle allowance for 2026 as EUR 0.36 per kilometre, capped at EUR 3,610 per year.",
+        "relevant": false
+      }
+    }
+  },
+  "delcour::what is the maximum eco voucher amount for delcour logistics": {
+    "answer": "For Delcour Logistics, the maximum eco voucher amount is EUR 250 per employee per year, in accordance with the general Belgian policy. This amount is exempt from social security and tax when granted by a collective labor agreement. The client-specific handover note does not specify any different amount or exception for eco vouchers.",
+    "claims": {
+      "pol-ecocheques-2025": {
+        "claim": "The maximum eco voucher amount in Belgium is EUR 250 per employee per year.",
+        "relevant": true
+      },
+      "ho-delcour-2025": {
+        "claim": "Delcour Logistics has 210 employees in PC 140.03 and provides meal vouchers of EUR 8.00 with the standard maximum split.",
+        "relevant": false
+      },
+      "pol-mv-2026": {
+        "claim": "The maximum face value for meal vouchers in Belgium is EUR 8.00, with an employer contribution of EUR 6.91.",
+        "relevant": false
+      }
+    }
+  }
+}

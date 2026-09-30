@@ -62,12 +62,7 @@ export type Receipt = {
 export type FeedbackRequest = { question: string; clientId: string; sourceIds: string[] };
 
 export type AskRequest = { question: string; clientId: string };
-export type AskResponse = {
-  answer: string;
-  receipt: Receipt;
-  cached?: boolean; // true when the LLM was unavailable and a stored answer was served
-  cachedAt?: string;
-};
+export type AskResponse = { answer: string; receipt: Receipt };
 
 // Corpus shapes (data/manifest.json)
 export type DocMeta = {

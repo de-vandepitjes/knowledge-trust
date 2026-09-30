@@ -258,9 +258,12 @@ export function rank(cards: SourceCard[]): SourceCard[] {
   });
 }
 
+// Signals that can change the verdict. Authority and usage only move the score.
+const VERDICT_KEYS: SignalKey[] = ["scope", "freshness", "consensus", "ownership"];
+
 export function verdict(
   ranked: SourceCard[],
-  conflicts: Conflict[],
+  candidates: Candidate[],
 ): { verdict: Verdict; summary: string } {
   const usable = ranked.filter(
     (c) => c.relevant && !c.signals.some((s) => s.key === "scope" && s.level === "red"),
@@ -271,19 +274,14 @@ export function verdict(
       summary: "No reliable source applies to this client and country. Ask an expert.",
     };
   const best = usable[0];
-  const reds = best.signals.filter((s) => s.level === "red" && s.key !== "consensus");
-  const ambers = best.signals.filter((s) => s.level === "amber");
-  const liveConflict = conflicts.filter((c) => {
-    const other = c.a === best.id ? c.b : c.b === best.id ? c.a : undefined;
-    if (!other) return false;
-    const o = usable.find((u) => u.id === other);
-    // A conflict only matters if the other source is itself still usable and reasonably reliable.
-    return !!o && o.score >= 0.5;
-  });
-  if (liveConflict.length > 0)
+  const sig = best.signals.filter((s) => VERDICT_KEYS.includes(s.key));
+  const reds = sig.filter((s) => s.level === "red" && s.key !== "consensus");
+  const ambers = sig.filter((s) => s.level === "amber");
+  // A second candidate answer backed by a reasonably reliable source is a live disagreement.
+  if (candidates.length > 1 && candidates[1].score >= 0.5)
     return {
       verdict: "verify",
-      summary: `Sources disagree (${liveConflict[0].what}). Confirm with the owner before acting.`,
+      summary: `Sources disagree (${candidates[0].answer} vs ${candidates[1].answer}). Confirm with the owner before acting.`,
     };
   if (reds.length > 0)
     return {
@@ -330,7 +328,7 @@ export function buildReceipt(
 ): Receipt {
   const ranked = rank(cards);
   const { candidates, margin } = scoreCandidates(rawCandidates, cards);
-  let v = verdict(ranked, conflicts);
+  let v = verdict(ranked, candidates);
   // Several answers close together is a reason to verify even without an explicit conflict.
   if (v.verdict === "safe" && candidates.length > 1 && margin < 0.25)
     v = {
