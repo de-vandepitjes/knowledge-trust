@@ -9,13 +9,14 @@
 |                       |             |       |
 |                       |             |       |
 
-## Git flow
+## Git flow (hackathon mode)
 
-- `main` is **always demo-able**. If it's broken, fixing it comes first.
-- Branch per task: `feat/<short-name>`, `fix/<short-name>`, `docs/<short-name>`.
-- Open a PR into `main`, one approval, **squash merge**. Small PRs, merge often.
-- Commit messages: `type: what` (e.g. `feat: trust panel shows source age`). Not enforced.
-- CI must be green before merge (lint, typecheck, format, build).
+- Everyone commits **straight to `main`**. No PRs, no reviews. Speed wins.
+- `main` must still run. Before you push: `npm run check` (or at least `npm run build`). If you break it, fix it first.
+- `git pull --rebase` before every push to avoid merge commits and conflicts.
+- Commit small and often, message `type: what` (e.g. `feat: trust panel shows source age`).
+- Work in separate files/folders where possible so you don't step on each other.
+- CI still runs on every push as a safety net; if it goes red, whoever pushed last fixes it.
 
 ## Secrets & data
 
