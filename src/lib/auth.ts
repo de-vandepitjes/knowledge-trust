@@ -1,6 +1,6 @@
-import { createHmac, timingSafeEqual } from "node:crypto";
+import { createHmac, scryptSync, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
-import { getClient, getUser } from "./corpus";
+import { corpus, getClient, getUser } from "./corpus";
 import type { Client, User } from "./types";
 
 const COOKIE = "kt_session";
@@ -59,6 +59,37 @@ export async function setSession(userId: string) {
 export async function clearSession() {
   const jar = await cookies();
   jar.delete(COOKIE);
+}
+
+/** Password check: constant-time compare of a salted scrypt hash. */
+export function verifyPassword(username: string, password: string): User | undefined {
+  const user = corpus().users.find((u) => u.username === username.toLowerCase());
+  // Always run scrypt so a missing user costs the same time as a wrong password.
+  const [salt, stored] = (user?.passwordHash ?? "00:00").split(":");
+  const candidate = scryptSync(password, salt, 64);
+  const expected = Buffer.from(stored, "hex");
+  const ok = candidate.length === expected.length && timingSafeEqual(candidate, expected);
+  return ok && user ? user : undefined;
+}
+
+/** Tiny in-memory brute-force guard: max 10 failed attempts per key per 15 minutes. */
+const attempts = new Map<string, { n: number; until: number }>();
+export function loginAllowed(key: string): boolean {
+  const a = attempts.get(key);
+  if (!a) return true;
+  if (Date.now() > a.until) {
+    attempts.delete(key);
+    return true;
+  }
+  return a.n < 10;
+}
+export function recordFailure(key: string) {
+  const a = attempts.get(key);
+  if (a && Date.now() <= a.until) a.n += 1;
+  else attempts.set(key, { n: 1, until: Date.now() + 15 * 60 * 1000 });
+}
+export function clearFailures(key: string) {
+  attempts.delete(key);
 }
 
 /** Authorization: may this user act for this client? Returns the client or undefined. */

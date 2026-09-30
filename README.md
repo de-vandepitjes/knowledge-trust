@@ -36,7 +36,7 @@ Live at https://knowledge-trust.vercel.app (Vercel, Frankfurt). Env vars: `GOOGL
 ## What is unfinished / known limits
 
 - Retrieval is keyword matching over a 10-document fake corpus. Real deployment would index SharePoint, Teams and the DMS.
-- Login is persona selection without passwords. Authorization (per-client scope) is real and enforced server-side; authentication is mocked.
+- Login is username + password against salted scrypt hashes in `data/users.json`, with a small in-memory brute-force guard. Demo credentials are shown on the sign-in page on purpose. Authorization (per-client scope) is enforced server-side on every request.
 - The Gemini free tier is unstable. Answers are cached in `data/answers-cache.json` and served with a visible "cached" badge when the model is down.
 - Trust weights are hand-set. In production they would be tuned per document type and validated with consultants.
 
@@ -56,7 +56,7 @@ See [docs/team.md](docs/team.md).
 ## Engine (done)
 
 - `POST /api/ask` `{question, clientId}` → `{answer, receipt}` (see `src/lib/types.ts` for the contract)
-- `POST /api/login` `{userId}` (demo personas: `lien`, `tom`), `POST /api/logout`, `GET /api/me`
+- `POST /api/login` `{username, password}` (demo: `lien` / `Lien2026!`, `tom` / `Tom2026!`), `POST /api/logout`, `GET /api/me`
 - `GET /api/sources/:id` document + metadata, 404 if out of scope
 - Trust rules are deterministic in `src/lib/trust.ts`; the LLM (Gemini, `src/lib/llm.ts`) only writes the answer and extracts claims/conflicts.
 - Demo questions (log in as Lien, client `verhaeghe` unless noted):

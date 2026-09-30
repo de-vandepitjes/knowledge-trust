@@ -103,10 +103,7 @@ export default function AskPage() {
               <div className="grid h-8 w-8 place-items-center rounded-full bg-[var(--selected)] text-sm font-bold ring-1 ring-[var(--selected-stroke)]">
                 {me.name[0]}
               </div>
-              <span className="hidden sm:inline">
-                <span className="font-semibold">{me.name}</span>
-                <span className="text-[var(--muted2)]"> · {me.role}</span>
-              </span>
+              <span className="hidden font-semibold sm:inline">{me.name}</span>
               <button
                 onClick={logout}
                 className="cozy-press inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-xs font-semibold text-[var(--muted)]"

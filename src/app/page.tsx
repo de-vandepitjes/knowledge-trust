@@ -1,93 +1,102 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Briefcase, Lock } from "lucide-react";
+import { ArrowRight, KeyRound, UserRound } from "lucide-react";
 import { Wordmark } from "@/components/Brand";
-
-type Persona = { id: string; name: string; role: string };
-
-const BLURB: Record<string, string> = {
-  lien: "Inherited the Bakkerij Verhaeghe and Delcour portfolios last month.",
-  tom: "Handles FritzCo Retail. No access to Lien's clients.",
-};
 
 export default function LoginPage() {
   const router = useRouter();
-  const [personas, setPersonas] = useState<Persona[]>([]);
-  const [busy, setBusy] = useState<string | null>(null);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
 
-  useEffect(() => {
-    fetch("/api/login")
-      .then((r) => r.json())
-      .then(setPersonas)
-      .catch(() => setPersonas([]));
-  }, []);
-
-  async function login(id: string) {
-    setBusy(id);
-    const r = await fetch("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId: id }),
-    });
-    if (r.ok) router.push("/ask");
-    else setBusy(null);
+  async function submit(e: FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    setError(null);
+    try {
+      const r = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+      if (r.ok) router.push("/ask");
+      else setError(((await r.json()) as { error?: string }).error ?? "Sign-in failed");
+    } catch {
+      setError("Network error");
+    } finally {
+      setBusy(false);
+    }
   }
 
   return (
-    <main className="relative flex-1 flex items-center justify-center p-6 glow-dust">
-      <div className="w-full max-w-2xl rise">
-        <div className="mb-10 text-center">
+    <main className="relative flex-1 flex items-center justify-center p-6">
+      <div className="w-full max-w-md rise">
+        <div className="mb-8 text-center">
           <div className="inline-flex">
             <Wordmark />
           </div>
-          <h1 className="mt-6 text-5xl font-extrabold tracking-tight leading-[1.05]">
-            Find it. Understand it.
-            <br />
-            <span className="text-gradient">Trust it.</span>
+          <h1 className="mt-6 text-4xl font-extrabold tracking-tight leading-[1.05]">
+            Find it. Understand it. <span className="text-gradient">Trust it.</span>
           </h1>
-          <p className="mt-4 text-lg text-[var(--muted)]">
-            Payroll answers with a receipt that shows <em>why</em> you can rely on them.
-          </p>
         </div>
 
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted2)]">
-          Sign in as
-        </p>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {personas.map((p) => (
-            <button
-              key={p.id}
-              onClick={() => login(p.id)}
-              disabled={busy !== null}
-              className="cozy-card cozy-press group text-left p-5 disabled:opacity-60"
-            >
-              <div className="flex items-center gap-3">
-                <div className="grid h-11 w-11 place-items-center rounded-full bg-[var(--selected)] text-lg font-bold ring-1 ring-[var(--selected-stroke)]">
-                  {p.name[0]}
-                </div>
-                <div>
-                  <div className="font-bold">{p.name}</div>
-                  <div className="text-sm text-[var(--muted2)]">{p.role}</div>
-                </div>
-              </div>
-              <p className="mt-3 text-sm text-[var(--muted)]">{BLURB[p.id]}</p>
-              <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--accent)]">
-                {busy === p.id ? "Signing in…" : "Continue"}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </div>
-            </button>
-          ))}
-        </div>
+        <form onSubmit={submit} className="cozy-card p-6 space-y-4">
+          <label className="block">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted2)]">
+              Username
+            </span>
+            <div className="relative mt-1.5">
+              <UserRound className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--muted2)]" />
+              <input
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                autoComplete="username"
+                autoCapitalize="none"
+                required
+                className="w-full rounded-xl border border-white/10 bg-white/[0.05] py-2.5 pl-10 pr-3 text-white outline-none transition focus:border-[var(--selected-stroke)] focus:ring-4 focus:ring-sky-400/10"
+              />
+            </div>
+          </label>
+          <label className="block">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted2)]">
+              Password
+            </span>
+            <div className="relative mt-1.5">
+              <KeyRound className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--muted2)]" />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+                required
+                className="w-full rounded-xl border border-white/10 bg-white/[0.05] py-2.5 pl-10 pr-3 text-white outline-none transition focus:border-[var(--selected-stroke)] focus:ring-4 focus:ring-sky-400/10"
+              />
+            </div>
+          </label>
 
-        <div className="mt-8 flex items-center justify-center gap-5 text-xs text-[var(--muted2)]">
-          <span className="inline-flex items-center gap-1.5">
-            <Lock className="h-3.5 w-3.5" /> Demo personas, no passwords
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <Briefcase className="h-3.5 w-3.5" /> Fictional SD Worx data
-          </span>
+          {error && (
+            <div className="rounded-xl border border-rose-300/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-100">
+              {error}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={busy || !username || !password}
+            className="btn-primary cozy-press inline-flex w-full items-center justify-center gap-2 rounded-xl py-3 font-bold disabled:opacity-40"
+          >
+            {busy ? "Signing in…" : "Sign in"}
+            <ArrowRight className="h-4 w-4" />
+          </button>
+        </form>
+
+        <div className="mt-5 text-center text-xs text-[var(--muted2)]">
+          Demo accounts: <span className="font-mono text-white/70">lien / Lien2026!</span>
+          <span className="mx-2 opacity-50">·</span>
+          <span className="font-mono text-white/70">tom / Tom2026!</span>
         </div>
       </div>
     </main>

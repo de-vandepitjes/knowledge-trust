@@ -62,4 +62,12 @@ export type DocMeta = {
 export type Person = { id: string; name: string; team: string; active: boolean; leftAt?: string };
 export type Expert = { id: string; name: string; team: string; country: string; topics: string[] };
 export type Client = { id: string; name: string; country: string; pc?: string };
-export type User = { id: string; name: string; role: string; clients: string[] };
+export type User = {
+  id: string;
+  username: string;
+  passwordHash: string; // "salt:scryptHex", never sent to the client
+  name: string;
+  role: string;
+  clients: string[];
+};
+export type PublicUser = Pick<User, "id" | "name" | "role">;

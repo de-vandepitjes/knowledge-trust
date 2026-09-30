@@ -22,7 +22,7 @@ Built in one evening with Next.js, TypeScript and Gemini. Corpus is fictional Be
 
 ## Live demo
 
-https://knowledge-trust.vercel.app (sign in as Lien, click the first example question)
+https://knowledge-trust.vercel.app (sign in as `lien` / `Lien2026!`, click the first example question)
 
 ## Repository
 
