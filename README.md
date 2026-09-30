@@ -27,7 +27,18 @@ npm run dev                  # http://localhost:3000
 | `scripts/`       | Seed and helper scripts                                           |
 | `docs/`          | Challenge brief, decisions, submission checklist, team agreements |
 
-## Status / unfinished
+## Deploy
+
+Vercel, region Frankfurt. Env vars: `GOOGLE_API_KEY`, `SESSION_SECRET`. `vercel --prod` from `main`.
+
+## What is unfinished / known limits
+
+- Retrieval is keyword matching over a 10-document fake corpus. Real deployment would index SharePoint, Teams and the DMS.
+- Login is persona selection without passwords. Authorization (per-client scope) is real and enforced server-side; authentication is mocked.
+- The Gemini free tier is unstable. Answers are cached in `data/answers-cache.json` and served with a visible "cached" badge when the model is down.
+- Trust weights are hand-set. In production they would be tuned per document type and validated with consultants.
+
+## Status
 
 - [x] Concept chosen
 - [x] Synthetic corpus
